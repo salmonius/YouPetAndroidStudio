@@ -6,33 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A7F2E8"
-    tools:context=".CrearCuentaUsuarioActivity">
+    tools:context=".CrearCuentaMascotasActivity">
 
     <TextView
-        android:id="@+id/tv1_crear_cuenta_usuario"
+        android:id="@+id/tv1_crear_cuenta_mascotas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/merienda_one"
-        android:text="Crear cuenta Usuario"
+        android:text="Crear cuenta Mascotas"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_crear_u_separador"
+        android:id="@+id/tv_crear_m_separador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="_____________________________________________________"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv1_crear_cuenta_usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/tv1_crear_cuenta_mascotas" />
 
     <TextView
-        android:id="@+id/tv2_crear_u_nombre"
+        android:id="@+id/tv2_crear_m_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -41,104 +41,92 @@
         android:text="Nombre:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/iv1_crear_m" />
 
     <TextView
-        android:id="@+id/tv7_crear_u_direccion"
+        android:id="@+id/tv7_crear_m_direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
-        android:text="Dirección:"
+        android:text="Castrado:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv6_crear_u_fecha" />
+        app:layout_constraintTop_toBottomOf="@+id/tv6_crear_m_fecha" />
 
     <TextView
-        android:id="@+id/tv9_crear_u_provincia"
+        android:id="@+id/tv8_crear_m_poblacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
-        android:text="Provincia:"
+        android:text="Sociabilidad:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv8_crear_u_poblacion" />
+        app:layout_constraintTop_toBottomOf="@+id/tv7_crear_m_direccion" />
 
     <TextView
-        android:id="@+id/tv8_crear_u_poblacion"
+        android:id="@+id/tv4_crear_m_telf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
-        android:text="Población:"
+        android:text="Edad:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv7_crear_u_direccion" />
+        app:layout_constraintTop_toBottomOf="@+id/tv3_crear_m_apellidos" />
 
     <TextView
-        android:id="@+id/tv4_crear_u_telf"
+        android:id="@+id/tv6_crear_m_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
-        android:text="Teléfono:"
+        android:text="Sexo:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv3_crear_u_apellidos" />
+        app:layout_constraintTop_toBottomOf="@+id/tv5_crear_m_email" />
 
     <TextView
-        android:id="@+id/tv6_crear_u_fecha"
+        android:id="@+id/tv3_crear_m_apellidos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
-        android:text="Fecha de nacimiento:"
+        android:text="Tipo de mascota:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv5_crear_u_email" />
-
-    <TextView
-        android:id="@+id/tv3_crear_u_apellidos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/merienda_one"
-        android:text="Apellidos:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv2_crear_u_nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/tv2_crear_m_nombre" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv1_crear_m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_crear_u_separador"
+        app:layout_constraintTop_toBottomOf="@+id/tv_crear_m_separador"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv5_crear_u_email"
+        android:id="@+id/tv5_crear_m_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
-        android:text="E-mail:"
+        android:text="Tamaño:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv4_crear_u_telf" />
+        app:layout_constraintTop_toBottomOf="@+id/tv4_crear_m_telf" />
 
     <EditText
-        android:id="@+id/edit1_crear_u_nombre"
+        android:id="@+id/edit1_crear_m_nombre"
         android:layout_width="253dp"
         android:layout_height="19dp"
         android:layout_marginTop="16dp"
@@ -146,65 +134,65 @@
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
-        app:layout_constraintStart_toEndOf="@+id/tv5_crear_u_email"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toEndOf="@+id/tv5_crear_m_email"
+        app:layout_constraintTop_toBottomOf="@+id/iv1_crear_m" />
 
     <EditText
-        android:id="@+id/edit2_crear_u_apellidos"
-        android:layout_width="253dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toEndOf="@+id/tv3_crear_u_apellidos"
-        app:layout_constraintTop_toBottomOf="@+id/edit1_crear_u_nombre" />
-
-    <EditText
-        android:id="@+id/edit3_crear_u_telf"
-        android:layout_width="253dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.387"
-        app:layout_constraintStart_toEndOf="@+id/tv4_crear_u_telf"
-        app:layout_constraintTop_toBottomOf="@+id/edit2_crear_u_apellidos" />
-
-    <EditText
-        android:id="@+id/edit4_crear_u_email"
-        android:layout_width="253dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toEndOf="@+id/tv5_crear_u_email"
-        app:layout_constraintTop_toBottomOf="@+id/edit3_crear_u_telf" />
-
-    <EditText
-        android:id="@+id/edit5_crear_u_fecha"
-        android:layout_width="165dp"
+        android:id="@+id/edit2_crear_m_tipo"
+        android:layout_width="205dp"
         android:layout_height="18dp"
         android:layout_marginTop="20dp"
         android:background="@color/white"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
-        app:layout_constraintStart_toEndOf="@+id/tv6_crear_u_fecha"
-        app:layout_constraintTop_toBottomOf="@+id/edit4_crear_u_email" />
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toEndOf="@+id/tv3_crear_m_apellidos"
+        app:layout_constraintTop_toBottomOf="@+id/edit1_crear_m_nombre" />
 
     <EditText
-        android:id="@+id/edit6_crear_u_direccion"
+        android:id="@+id/edit3_crear_m_edad"
+        android:layout_width="253dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toEndOf="@+id/tv4_crear_m_telf"
+        app:layout_constraintTop_toBottomOf="@+id/edit2_crear_m_tipo" />
+
+    <EditText
+        android:id="@+id/edit4_crear_m_tamanio"
+        android:layout_width="253dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toEndOf="@+id/tv5_crear_m_email"
+        app:layout_constraintTop_toBottomOf="@+id/edit3_crear_m_edad" />
+
+    <EditText
+        android:id="@+id/edit5_crear_m_sexo"
+        android:layout_width="249dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.648"
+        app:layout_constraintStart_toEndOf="@+id/tv6_crear_m_fecha"
+        app:layout_constraintTop_toBottomOf="@+id/edit4_crear_m_tamanio" />
+
+    <EditText
+        android:id="@+id/edit6_crear_m_castrado"
         android:layout_width="253dp"
         android:layout_height="19dp"
         android:layout_marginTop="20dp"
@@ -213,69 +201,56 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toEndOf="@+id/tv7_crear_u_direccion"
-        app:layout_constraintTop_toBottomOf="@+id/edit5_crear_u_fecha" />
+        app:layout_constraintStart_toEndOf="@+id/tv7_crear_m_direccion"
+        app:layout_constraintTop_toBottomOf="@+id/edit5_crear_m_sexo" />
 
     <EditText
-        android:id="@+id/edit7_crear_u_poblacion"
+        android:id="@+id/edit7_crear_m_sociabilidad"
         android:layout_width="253dp"
         android:layout_height="19dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:background="@color/white"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
-        app:layout_constraintStart_toEndOf="@+id/tv8_crear_u_poblacion"
-        app:layout_constraintTop_toBottomOf="@+id/edit6_crear_u_direccion" />
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toEndOf="@+id/tv8_crear_m_poblacion"
+        app:layout_constraintTop_toBottomOf="@+id/edit6_crear_m_castrado" />
 
     <EditText
-        android:id="@+id/edit8_crear_u_provincia"
-        android:layout_width="253dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toEndOf="@+id/tv9_crear_u_provincia"
-        app:layout_constraintTop_toBottomOf="@+id/edit7_crear_u_poblacion" />
-
-    <EditText
-        android:id="@+id/edit9_crear_u_subir"
+        android:id="@+id/edit9_crear_m_subir"
         android:layout_width="205dp"
         android:layout_height="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:background="@color/white"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.344"
-        app:layout_constraintStart_toEndOf="@+id/b1_crear_u_subir"
-        app:layout_constraintTop_toBottomOf="@+id/edit8_crear_u_provincia" />
+        app:layout_constraintStart_toEndOf="@+id/b1_crear_m_subir"
+        app:layout_constraintTop_toBottomOf="@+id/edit7_crear_m_sociabilidad" />
 
     <Button
-        android:id="@+id/b1_crear_u_subir"
+        android:id="@+id/b1_crear_m_subir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/black"
         android:text="Subir imagen"
         android:textColor="#02FFC1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv9_crear_u_provincia" />
+        app:layout_constraintTop_toBottomOf="@+id/tv8_crear_m_poblacion" />
 
     <Button
-        android:id="@+id/b2_crear_u_crear"
+        android:id="@+id/b2_crear_m_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#00CE56"
         android:fontFamily="@font/merienda_one"
-        android:text="Crear usuario"
+        android:text="Crear mascota"
         android:textColor="#070707"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
