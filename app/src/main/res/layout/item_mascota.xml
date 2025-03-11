@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="180dp"
+    android:background="#A7F2E8"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="79dp"
+        android:layout_height="68dp"
+        app:srcCompat="@drawable/pata" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A7F2E8"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Nombre" />
+
+        <EditText
+            android:id="@+id/editTextText2"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A7F2E8"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Tipo" />
+
+        <EditText
+            android:id="@+id/editTextText3"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A7F2E8"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Edad" />
+
+        <EditText
+            android:id="@+id/editTextText4"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A7F2E8"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Tamaño" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A7F2E8"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Sexo" />
+
+        <EditText
+            android:id="@+id/editTextText6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A7F2E8"
+            android:ems="10"
+            android:inputType="text"
+            android:text="¿castrado?" />
+
+        <EditText
+            android:id="@+id/editTextText7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A7F2E8"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Sociabilidad" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#090909"
+                android:fontFamily="@font/merienda_one"
+                android:text="+guardar"
+                android:textColor="#02FFC1"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FB0E0E"
+                android:fontFamily="@font/merienda_one"
+                android:text="Eliminar"
+                android:textColor="#050505"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
