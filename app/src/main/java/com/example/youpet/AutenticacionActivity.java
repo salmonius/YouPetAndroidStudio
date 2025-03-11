@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class PaguinaPrincipal extends AppCompatActivity {
+public class AutenticacionActivity extends AppCompatActivity {
     protected EditText edit1,edit2;
     protected Button b1,b2;
     protected Intent pasar;
@@ -38,7 +38,7 @@ public class PaguinaPrincipal extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pasar = new Intent(PaguinaPrincipal.this, CrearCuentaUsuarioActivity.class);
+                pasar = new Intent(AutenticacionActivity.this, CrearCuentaUsuarioActivity.class);
                 startActivity(pasar);
             }
         });

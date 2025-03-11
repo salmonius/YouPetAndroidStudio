@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A7F2E8"
+    tools:context=".PrincipalActivity">
+
+    <TextView
+        android:id="@+id/tv1_principal_eventos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Eventos Animales"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv8_principal_tablon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Tablón de noticias"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabla_eventos" />
+
+    <Button
+        android:id="@+id/b1_principal_crear"
+        android:layout_width="117dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#00CE56"
+        android:fontFamily="@font/merienda_one"
+        android:lineSpacingExtra="12sp"
+        android:text="Crear Evento"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:iconTintMode="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintStart_toEndOf="@+id/tv1_principal_eventos"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="@dimen/cardview_compat_inset_shadow" />
+
+    <TableLayout
+        android:id="@+id/tabla_eventos"
+        android:layout_width="363dp"
+        android:layout_height="199dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="24dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="@color/white"
+        android:baselineAligned="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv2_principal_creador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Creador evento"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv2_principal_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Nombre Evento"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv2_principal_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Lugar"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv2_principal_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Fecha"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv3_principal_creador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv3_principal_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv3_principal_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv3_principal_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/b2_principal_eventos"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000000"
+                android:fontFamily="@font/merienda_one"
+                android:lineSpacingExtra="10sp"
+                android:text="Button"
+                android:textColor="#02FFC1"
+                android:textSize="8sp"
+                app:strokeColor="#02FFC1"
+                tools:text="+ info" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv4_principal_creador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv4_principal_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv4_principal_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv4_principal_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/b3_principal_eventos"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000000"
+                android:fontFamily="@font/merienda_one"
+                android:lineSpacingExtra="10sp"
+                android:text="Button"
+                android:textColor="#02FFC1"
+                android:textSize="8sp"
+                app:strokeColor="#02FFC1"
+                tools:text="+ info" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv5_principal_creador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv5_principal_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv5_principal_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv5_principal_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/b4_principal_eventos"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000000"
+                android:fontFamily="@font/merienda_one"
+                android:lineSpacingExtra="10sp"
+                android:text="Button"
+                android:textColor="#02FFC1"
+                android:textSize="8sp"
+                app:strokeColor="#02FFC1"
+                tools:text="+ info" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv6_principal_creador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv6_principal_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv6_principal_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv6_principal_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/b5_principal_eventos"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000000"
+                android:fontFamily="@font/merienda_one"
+                android:lineSpacingExtra="10sp"
+                android:text="Button"
+                android:textColor="#02FFC1"
+                android:textSize="8sp"
+                app:strokeColor="#02FFC1"
+                tools:text="+ info" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv7_principal_creador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv7_principal_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv7_principal_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv7_principal_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/merienda_one"
+                android:text="Datos"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/b6_principal_eventos"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000000"
+                android:fontFamily="@font/merienda_one"
+                android:lineSpacingExtra="10sp"
+                android:text="Button"
+                android:textColor="#02FFC1"
+                android:textSize="8sp"
+                app:strokeColor="#02FFC1"
+                tools:text="+ info" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/b7_principal_ver_mas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00CE56"
+                android:fontFamily="@font/merienda_one"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:text="Ver más eventos"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                app:rippleColor="#673AB7"
+                app:strokeColor="#000000"
+                app:strokeWidth="@dimen/cardview_compat_inset_shadow" />
+        </TableRow>
+
+    </TableLayout>
+
+    <ListView
+        android:id="@+id/lv1_principal"
+        android:layout_width="359dp"
+        android:layout_height="268dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv8_principal_tablon" />
+
+    <EditText
+        android:id="@+id/edit1_principal"
+        android:layout_width="220dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Escriba aquí su noticia"
+        android:inputType="text"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv1_principal"
+        app:layout_constraintVertical_bias="0.028" />
+
+    <Button
+        android:id="@+id/b8_principal_crear_noticia"
+        android:layout_width="117dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#00CE56"
+        android:fontFamily="@font/merienda_one"
+        android:text="Crear Noticia"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toEndOf="@+id/edit1_principal"
+        app:layout_constraintTop_toBottomOf="@+id/lv1_principal"
+        app:strokeColor="#000000"
+        app:strokeWidth="@dimen/cardview_compat_inset_shadow" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

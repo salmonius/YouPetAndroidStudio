@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A7F2E8"
+    tools:context=".InfoEventoActivity">
+
+    <TextView
+        android:id="@+id/tv11_info_evento_descripcion_rellenable"
+        android:layout_width="385dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt10Descrip_infoEvent" />
+
+    <TextView
+        android:id="@+id/tv7_info_evento_ubicacion_rellenable"
+        android:layout_width="291dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintStart_toEndOf="@+id/txt6Ubi_infoEvent"
+        app:layout_constraintTop_toBottomOf="@+id/txt4Hora_infoEvent" />
+
+    <TextView
+        android:id="@+id/tv9_info_evento_creadopor_rellenable"
+        android:layout_width="226dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txt8CreadoPor_infoEvent"
+        app:layout_constraintTop_toBottomOf="@+id/tv7_info_evento_ubicacion_rellenable" />
+
+    <TextView
+        android:id="@+id/tv5_info_evento_hora_rellenable"
+        android:layout_width="117dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txt4Hora_infoEvent"
+        app:layout_constraintTop_toBottomOf="@+id/iv1_info_evento" />
+
+    <TextView
+        android:id="@+id/tv3_info_evento_fecha_rellenable"
+        android:layout_width="155dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/txt2Fech_infoEvent"
+        app:layout_constraintTop_toBottomOf="@+id/iv1_info_evento" />
+
+    <TextView
+        android:id="@+id/txt1Titulo_infoEvent"
+        android:layout_width="389dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Evento por el cumpleaños de Baldur"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv1_info_evento"
+        android:layout_width="382dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt1Titulo_infoEvent"
+        app:srcCompat="@android:drawable/dialog_frame" />
+
+    <TextView
+        android:id="@+id/txt2Fech_infoEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Fecha"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv1_info_evento" />
+
+    <TextView
+        android:id="@+id/txt4Hora_infoEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Hora"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tv3_info_evento_fecha_rellenable"
+        app:layout_constraintTop_toBottomOf="@+id/iv1_info_evento" />
+
+    <TextView
+        android:id="@+id/txt6Ubi_infoEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Ubicación"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt2Fech_infoEvent" />
+
+    <TextView
+        android:id="@+id/txt8CreadoPor_infoEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Evento creado por"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt6Ubi_infoEvent" />
+
+    <TextView
+        android:id="@+id/txt10Descrip_infoEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/merienda_one"
+        android:text="Descripcción del evento"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt8CreadoPor_infoEvent" />
+
+    <Button
+        android:id="@+id/b1_info_evento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#00CE56"
+        android:fontFamily="@font/merienda_one"
+        android:text="+ Apuntarme evento"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 runOnUiThread(() -> {
-                    pasar = new Intent(MainActivity.this, PaguinaPrincipal.class);
+                    pasar = new Intent(MainActivity.this, AutenticacionActivity.class);
                     startActivity(pasar);
                     finish();
                 });
