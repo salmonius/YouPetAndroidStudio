@@ -145,7 +145,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/iv1_perfil"
-        tools:layout_editor_absoluteY="103dp" />
+        tools:layout_editor_absoluteY="103dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tv1_perfil_usuario"
