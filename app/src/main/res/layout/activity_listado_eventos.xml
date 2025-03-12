@@ -9,9 +9,9 @@
     tools:context=".ListadoEventosActivity">
 
     <ImageButton
-        android:id="@+id/ib1_eventos"
-        android:layout_width="49dp"
-        android:layout_height="38dp"
+        android:id="@+id/ib1_eventos_atras"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/flechaizquierda"
@@ -30,7 +30,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib1_eventos" />
+        app:layout_constraintTop_toBottomOf="@+id/ib1_eventos_atras" />
 
     <Button
         android:id="@+id/b1_eventos"

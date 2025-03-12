@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        getSupportActionBar().hide();
+
         tv1 = findViewById(R.id.tv1_main);
         iv1 = findViewById(R.id.iv1_main_perro);
         iv2 = findViewById(R.id.iv2_main_brid);

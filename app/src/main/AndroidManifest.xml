@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.YouPet"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
             android:name=".PerfilActivity"
@@ -29,15 +29,6 @@
             android:exported="false" />
         <activity
             android:name=".CrearCuentaMascotasActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".CrearMascotaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CrearCuentaMascotaActivity"
             android:exported="false" />
         <activity
             android:name=".CrearCuentaUsuarioActivity"

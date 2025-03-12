@@ -1,9 +1,11 @@
 package com.example.youpet;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ListadoEventosActivity extends AppCompatActivity {
     protected RecyclerView rv1;
+    protected ImageButton ib1;
+    protected Intent atras;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,12 +35,24 @@ public class ListadoEventosActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        getSupportActionBar().hide();
+
         rv1 = findViewById(R.id.rv1_eventos);
+        ib1 = findViewById(R.id.ib1_eventos_atras);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv1.setLayoutManager(llm);
 
         rv1.setAdapter(new AdaptadorFrutas());
+
+        ib1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atras = new Intent(ListadoEventosActivity.this, PrincipalActivity.class);
+                startActivity(atras);
+
+            }
+        });
     }
 
     private class AdaptadorFrutas extends RecyclerView.Adapter<AdaptadorFrutas.AdaptadorFrutasHolder> {
