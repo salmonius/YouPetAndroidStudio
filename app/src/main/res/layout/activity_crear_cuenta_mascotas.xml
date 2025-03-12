@@ -16,6 +16,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/merienda_one"
         android:text="Crear cuenta Mascotas"
+        android:textColor="#070707"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="_____________________________________________________"
+        android:textColor="#070707"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1_crear_cuenta_mascotas" />
@@ -39,6 +41,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Nombre:"
+        android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv1_crear_m" />
@@ -51,6 +54,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Castrado:"
+        android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv6_crear_m_fecha" />
@@ -63,6 +67,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Sociabilidad:"
+        android:textColor="#040404"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv7_crear_m_direccion" />
@@ -75,6 +80,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Edad:"
+        android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv3_crear_m_apellidos" />
@@ -87,6 +93,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Sexo:"
+        android:textColor="#050505"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv5_crear_m_email" />
@@ -99,6 +106,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Tipo de mascota:"
+        android:textColor="#040404"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv2_crear_m_nombre" />
@@ -121,6 +129,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Tamaño:"
+        android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv4_crear_m_telf" />

@@ -16,6 +16,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/merienda_one"
         android:text="Crear cuenta Usuario"
+        android:textColor="#070707"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="_____________________________________________________"
+        android:textColor="#070707"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1_crear_cuenta_usuario" />
@@ -39,6 +41,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Nombre:"
+        android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -51,6 +54,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Dirección:"
+        android:textColor="#050505"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv6_crear_u_fecha" />
@@ -63,6 +67,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Provincia:"
+        android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv8_crear_u_poblacion" />
@@ -75,6 +80,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Población:"
+        android:textColor="#050505"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv7_crear_u_direccion" />
@@ -87,6 +93,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Teléfono:"
+        android:textColor="#050505"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv3_crear_u_apellidos" />
@@ -99,6 +106,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Fecha de nacimiento:"
+        android:textColor="#040404"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv5_crear_u_email" />
@@ -111,6 +119,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="Apellidos:"
+        android:textColor="#040404"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv2_crear_u_nombre" />
@@ -133,6 +142,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/merienda_one"
         android:text="E-mail:"
+        android:textColor="#050505"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv4_crear_u_telf" />

@@ -60,7 +60,7 @@ public class ListadoEventosActivity extends AppCompatActivity {
         @NonNull
         @Override
         public AdaptadorFrutasHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new AdaptadorFrutasHolder(getLayoutInflater().inflate(R.layout.item_eventos,parent,false));
+            return new AdaptadorFrutasHolder(getLayoutInflater().inflate(R.layout.item_listado_eventos,parent,false));
         }
 
         @Override
@@ -78,10 +78,10 @@ public class ListadoEventosActivity extends AppCompatActivity {
             ImageView iv1;
             public AdaptadorFrutasHolder(@NonNull View itemView) {
                 super(itemView);
-                iv1 = itemView.findViewById(R.id.iv1_item_eventos);
-                tv1 = itemView.findViewById(R.id.tv1_item);
-                tv2 = itemView.findViewById(R.id.tv2_item);
-                tv3 = itemView.findViewById(R.id.tv3_item);
+                iv1 = itemView.findViewById(R.id.item_iv1_listado_eventos);
+                tv1 = itemView.findViewById(R.id.item_tv1_listado_evento_nombre);
+                tv2 = itemView.findViewById(R.id.item_tv2_listado_evento_fecha);
+                tv3 = itemView.findViewById(R.id.item_tv3_listado_evento_hora);
                 itemView.setOnClickListener(this);
             }
 

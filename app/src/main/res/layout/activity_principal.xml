@@ -16,6 +16,7 @@
         android:layout_marginTop="36dp"
         android:fontFamily="@font/merienda_one"
         android:text="Eventos Animales"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +29,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/merienda_one"
         android:text="Tablón de noticias"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabla_eventos" />
@@ -77,6 +79,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Creador evento"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
@@ -87,6 +90,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Nombre Evento"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
@@ -97,6 +101,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Lugar"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
@@ -107,6 +112,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Fecha"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
@@ -169,11 +175,11 @@
                 android:backgroundTint="#000000"
                 android:fontFamily="@font/merienda_one"
                 android:lineSpacingExtra="10sp"
-                android:text="Button"
+                android:onClick="pasarInfo"
+                android:text="+ info"
                 android:textColor="#02FFC1"
                 android:textSize="8sp"
-                app:strokeColor="#02FFC1"
-                tools:text="+ info" />
+                app:strokeColor="#02FFC1" />
         </TableRow>
 
         <TableRow
@@ -224,11 +230,11 @@
                 android:backgroundTint="#000000"
                 android:fontFamily="@font/merienda_one"
                 android:lineSpacingExtra="10sp"
-                android:text="Button"
+                android:onClick="pasarInfo"
+                android:text="+ info"
                 android:textColor="#02FFC1"
                 android:textSize="8sp"
-                app:strokeColor="#02FFC1"
-                tools:text="+ info" />
+                app:strokeColor="#02FFC1" />
         </TableRow>
 
         <TableRow
@@ -279,11 +285,11 @@
                 android:backgroundTint="#000000"
                 android:fontFamily="@font/merienda_one"
                 android:lineSpacingExtra="10sp"
-                android:text="Button"
+                android:onClick="pasarInfo"
+                android:text="+ info"
                 android:textColor="#02FFC1"
                 android:textSize="8sp"
-                app:strokeColor="#02FFC1"
-                tools:text="+ info" />
+                app:strokeColor="#02FFC1" />
         </TableRow>
 
         <TableRow
@@ -334,11 +340,11 @@
                 android:backgroundTint="#000000"
                 android:fontFamily="@font/merienda_one"
                 android:lineSpacingExtra="10sp"
-                android:text="Button"
+                android:onClick="pasarInfo"
+                android:text="+ info"
                 android:textColor="#02FFC1"
                 android:textSize="8sp"
-                app:strokeColor="#02FFC1"
-                tools:text="+ info" />
+                app:strokeColor="#02FFC1" />
         </TableRow>
 
         <TableRow
@@ -389,11 +395,11 @@
                 android:backgroundTint="#000000"
                 android:fontFamily="@font/merienda_one"
                 android:lineSpacingExtra="10sp"
-                android:text="Button"
+                android:onClick="pasarInfo"
+                android:text="+ info"
                 android:textColor="#02FFC1"
                 android:textSize="8sp"
-                app:strokeColor="#02FFC1"
-                tools:text="+ info" />
+                app:strokeColor="#02FFC1" />
         </TableRow>
 
         <TableRow

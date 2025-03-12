@@ -72,6 +72,7 @@
         android:layout_marginTop="168dp"
         android:fontFamily="@font/merienda_one"
         android:text="Mascotas unidas, dueños felices"
+        android:textColor="#070707"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

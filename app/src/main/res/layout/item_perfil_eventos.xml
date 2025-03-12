@@ -7,7 +7,7 @@
     android:background="#A7F2E8">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/item_iv1_eventos"
         android:layout_width="79dp"
         android:layout_height="68dp"
         app:srcCompat="@drawable/pata"
@@ -19,31 +19,34 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/item_edit1_eventos_usuario"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#A7F2E8"
             android:ems="10"
             android:inputType="text"
-            android:text="NombreU" />
+            android:text="NombreU"
+            android:textColor="#050505" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/item_edit2_eventos_mascota"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#A7F2E8"
             android:ems="10"
             android:inputType="text"
-            android:text="NombreM" />
+            android:text="NombreM"
+            android:textColor="#040404" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/item_edit3_eventos_fecha"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#A7F2E8"
             android:ems="10"
             android:inputType="text"
-            android:text="Fecha" />
+            android:text="Fecha"
+            android:textColor="#050505" />
 
     </LinearLayout>
 
@@ -53,22 +56,24 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/item_edit4_eventos_hora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#A7F2E8"
             android:ems="10"
             android:inputType="text"
-            android:text="Hora" />
+            android:text="Hora"
+            android:textColor="#070707" />
 
         <EditText
-            android:id="@+id/editTextText6"
+            android:id="@+id/item_edit5_eventos_ubicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#A7F2E8"
             android:ems="10"
             android:inputType="text"
-            android:text="Ubicación" />
+            android:text="Ubicación"
+            android:textColor="#0B0B0B" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +81,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/item_b1_eventos_guardar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#090909"
@@ -91,7 +96,7 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/item_b2_eventos_eliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FB0E0E"

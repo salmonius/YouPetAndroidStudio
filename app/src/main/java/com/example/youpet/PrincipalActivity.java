@@ -46,51 +46,6 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pasar = new Intent(PrincipalActivity.this,InfoEventoActivity.class);
-                startActivity(pasar);
-
-            }
-        });
-
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pasar = new Intent(PrincipalActivity.this,InfoEventoActivity.class);
-                startActivity(pasar);
-
-            }
-        });
-
-        b4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pasar = new Intent(PrincipalActivity.this,InfoEventoActivity.class);
-                startActivity(pasar);
-
-            }
-        });
-
-        b5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pasar = new Intent(PrincipalActivity.this,InfoEventoActivity.class);
-                startActivity(pasar);
-
-            }
-        });
-
-        b6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pasar = new Intent(PrincipalActivity.this,InfoEventoActivity.class);
-                startActivity(pasar);
-
-            }
-        });
-
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,5 +89,9 @@ public class PrincipalActivity extends AppCompatActivity {
         }
             return super.onOptionsItemSelected(item);
 
+    }
+    public void pasarInfo(View v){
+        pasar = new Intent(PrincipalActivity.this,InfoEventoActivity.class);
+        startActivity(pasar);
     }
 }
