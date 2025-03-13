@@ -278,7 +278,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit7_crear_u_poblacion" />
 
     <EditText
-        android:id="@+id/edit9_crear_u_subir"
+        android:id="@+id/edit10_crear_u_subir"
         android:layout_width="205dp"
         android:layout_height="24dp"
         android:layout_marginStart="24dp"
