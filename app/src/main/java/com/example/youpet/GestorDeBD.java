@@ -1,9 +1,11 @@
 package com.example.youpet;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -32,25 +34,111 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     }
     //Insertar usuario
-    public void insertarUsuario(String nombre,String apellidos,String telefono,String email,String fechaNacimiento,String direccion,String poblacion,String provincia,String contrasenia,byte[] imagen){
+    // Insertar usuario con ContentValues
+    public void insertarUsuario(String nombre, String apellidos, String telefono, String email, String fechaNacimiento, String direccion, String poblacion, String provincia, String contrasenia, byte[] imagen) {
         db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO usuario VALUES(null,'"+nombre+"','"+apellidos+"','"+telefono+"','"+email+"','"+fechaNacimiento+"','"+direccion+"','"+poblacion+"','"+provincia+"','"+contrasenia+"',"+ Arrays.toString(imagen) +")");
+
+        // Usamos ContentValues para pasar los valores
+        ContentValues values = new ContentValues();
+        values.put("nombre", nombre);
+        values.put("apellidos", apellidos);
+        values.put("telefono", telefono);
+        values.put("email", email);
+        values.put("fechaNacimiento", fechaNacimiento);
+        values.put("direccion", direccion);
+        values.put("poblacion", poblacion);
+        values.put("provincia", provincia);
+        values.put("contrasenia", contrasenia);
+        values.put("imagen", imagen); // Aquí pasamos directamente el array de bytes
+
+        // Inserción de datos en la tabla usuario
+        long resultado = db.insert("usuario", null, values);
+
+        if (resultado == -1) {
+            // Si la inserción falla
+            Log.e("DB_ERROR", "Error al insertar el usuario en la base de datos");
+        } else {
+            // Si la inserción tiene éxito
+            Log.d("DB_SUCCESS", "Usuario insertado con éxito, ID: " + resultado);
+        }
     }
+
     //Insertar mascota
     public void insertarMascotas(int usuarioId,String nombre,String tipo,String fecha,String tamano,String sexo,String castrado,String sociabilidad,byte[] imagen){
         db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO mascota VALUES(null,"+usuarioId+",'"+nombre+"','"+tipo+"','"+fecha+"','"+tamano+"','"+sexo+"','"+castrado+"','"+sociabilidad+"',"+ Arrays.toString(imagen) +")");
+
+        // Usamos ContentValues para pasar los valores
+        ContentValues values = new ContentValues();
+        values.put("usuarioId", usuarioId);
+        values.put("nombre", nombre);
+        values.put("tipo", tipo);
+        values.put("fecha", fecha);
+        values.put("tamano", tamano);
+        values.put("sexo", sexo);
+        values.put("castrado", castrado);
+        values.put("sociabilidad", sociabilidad);
+        values.put("imagen", imagen); // Aquí pasamos directamente el array de bytes
+
+        // Inserción de datos en la tabla usuario
+        long resultado = db.insert("mascota", null, values);
+
+        if (resultado == -1) {
+            // Si la inserción falla
+            Log.e("DB_ERROR", "Error al insertar el usuario en la base de datos");
+        } else {
+            // Si la inserción tiene éxito
+            Log.d("DB_SUCCESS", "Usuario insertado con éxito, ID: " + resultado);
+        }
     }
     //Insertar evento
     public void insertarEvento(int usuarioId,String nombre,String descripcion,String fecha,String hora,String ubicacion){
         db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO evento VALUES(null,"+usuarioId+",'"+nombre+"','"+descripcion+"','"+fecha+"','"+hora+"','"+ubicacion+"')");
+
+        // Usamos ContentValues para pasar los valores
+        ContentValues values = new ContentValues();
+        values.put("usuarioId", usuarioId);
+        values.put("nombre", nombre);
+        values.put("descripcion", descripcion);
+        values.put("fecha", fecha);
+        values.put("hora", hora);
+        values.put("ubicacion", ubicacion);
+
+        // Inserción de datos en la tabla usuario
+        long resultado = db.insert("evento", null, values);
+
+        if (resultado == -1) {
+            // Si la inserción falla
+            Log.e("DB_ERROR", "Error al insertar el usuario en la base de datos");
+        } else {
+            // Si la inserción tiene éxito
+            Log.d("DB_SUCCESS", "Usuario insertado con éxito, ID: " + resultado);
+        }
     }
     public void insertarNoticia(int usuarioId, Date fecha, String titulo, String descripcion){
         db = this.getWritableDatabase();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        // Formatear la fecha para almacenarla en formato 'DATETIME'
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fechaFormateada = sdf.format(fecha);
-        db.execSQL("INSERT INTO noticia VALUES(null," + usuarioId + ",'" + fechaFormateada + "','" + titulo + "','" + descripcion + "')");
+
+        // Usamos ContentValues para evitar construir consultas SQL manuales
+        ContentValues values = new ContentValues();
+        values.put("usuarioId", usuarioId);
+        values.put("fecha_hora", fechaFormateada); // Campo 'DATETIME'
+        values.put("titulo", titulo);
+        values.put("descripcion", descripcion);
+
+        // Inserción de los valores en la tabla 'noticia'
+        long resultado = db.insert("noticia", null, values);
+
+        if (resultado == -1) {
+            // Si la inserción falla
+            Log.e("DB_ERROR", "Error al insertar la noticia en la base de datos");
+        } else {
+            // Si la inserción tiene éxito
+            Log.d("DB_SUCCESS", "Noticia insertada con éxito, ID: " + resultado);
+        }
     }
 
 }

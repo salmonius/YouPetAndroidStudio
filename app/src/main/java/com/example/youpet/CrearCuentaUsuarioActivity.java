@@ -96,7 +96,7 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
                     byte[] imageBytes = stream.toByteArray();
 
                     edit10.setTag(imageBytes);
