@@ -17,6 +17,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class PrincipalActivity extends AppCompatActivity {
     protected Button b1,b2,b3,b4,b5,b6,b7,b8;
     protected Intent pasar;
+    protected Bundle extras;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b6 = findViewById(R.id.b6_principal_eventos);
         b7 = findViewById(R.id.b7_principal_ver_mas);
         b8 = findViewById(R.id.b8_principal_crear_noticia);
+
+        extras = getIntent().getExtras();
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +79,8 @@ public class PrincipalActivity extends AppCompatActivity {
         // Handle item selection.
         if(item.getItemId()==R.id.item_editar) {
             pasar = new Intent(PrincipalActivity.this,PerfilActivity.class);
+            pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+            pasar.putExtra("PASS",extras.getString("PASS"));
             startActivity(pasar);
 
         }

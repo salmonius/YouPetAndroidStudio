@@ -17,6 +17,7 @@ public class AutenticacionActivity extends AppCompatActivity {
     protected EditText edit1,edit2;
     protected Button b1,b2;
     protected Intent pasar;
+    protected GestorDeBD gbd;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,6 +36,37 @@ public class AutenticacionActivity extends AppCompatActivity {
         edit2 = findViewById(R.id.edit2_principal);
         b1 = findViewById(R.id.b1_principal);
         b2 = findViewById(R.id.b2_principal);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = edit1.getText().toString().trim();
+                String contrasenia = edit2.getText().toString().trim();
+
+                // Validar que los campos no estén vacíos
+                if (email.isEmpty() || contrasenia.isEmpty()) {
+                    edit1.setError("El correo electrónico es obligatorio");
+                    edit2.setError("La contraseña es obligatoria");
+                    return;
+                }
+
+                gbd = new GestorDeBD(AutenticacionActivity.this);
+                boolean autenticado = gbd.autenticarUsuario(email, contrasenia);
+
+                if (autenticado) {
+                    // Si es exitoso, pasar a la siguiente actividad
+                    pasar = new Intent(AutenticacionActivity.this, PrincipalActivity.class);
+                    pasar.putExtra("EMAIL",email);
+                    pasar.putExtra("PASS",contrasenia);
+                    startActivity(pasar);
+                    finish();
+                } else {
+                    // Mostrar mensaje de error
+                    edit2.setError("Correo electrónico o contraseña incorrectos");
+                }
+            }
+        });
+
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override

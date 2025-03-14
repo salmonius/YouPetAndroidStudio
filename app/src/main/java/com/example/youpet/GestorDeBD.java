@@ -3,6 +3,7 @@ package com.example.youpet;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -140,6 +141,50 @@ public class GestorDeBD extends SQLiteOpenHelper {
             Log.d("DB_SUCCESS", "Noticia insertada con éxito, ID: " + resultado);
         }
     }
+
+    public boolean autenticarUsuario(String email, String contrasenia) {
+        db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE email = '"+email+"' AND contrasenia = '"+contrasenia+"'", null);
+
+        boolean autenticado = cursor.moveToFirst(); // Devuelve true si encontró un usuario
+        cursor.close();
+        return autenticado;
+    }
+    public Usuario usuarioConectado(String email, String contrasenia) {
+        db = this.getReadableDatabase();
+        Usuario usuario = null;
+
+        // Usa consultas parametrizadas para evitar inyección SQL
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM usuario WHERE email = ? AND contrasenia = ?",
+                new String[]{email, contrasenia}
+        );
+
+        if (cursor.moveToFirst()) { // Si encuentra un registro
+            // Extrae los datos del cursor y crea el objeto Usuario
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+            String apellidos = cursor.getString(cursor.getColumnIndexOrThrow("apellidos"));
+            String telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono"));
+            String fechaNacimiento = cursor.getString(cursor.getColumnIndexOrThrow("fechaNacimiento"));
+            String direccion = cursor.getString(cursor.getColumnIndexOrThrow("direccion"));
+            String poblacion = cursor.getString(cursor.getColumnIndexOrThrow("poblacion"));
+            String provincia = cursor.getString(cursor.getColumnIndexOrThrow("provincia"));
+            String contraseña = cursor.getString(cursor.getColumnIndexOrThrow("contrasenia"));
+            byte[] imagen = cursor.getBlob(cursor.getColumnIndexOrThrow("imagen")); // Campo tipo BLOB
+
+            // Crea el objeto Usuario
+            usuario = new Usuario(
+                    id, nombre, apellidos, telefono, email, fechaNacimiento,
+                    direccion, poblacion, provincia, contraseña, imagen
+            );
+        }
+
+        cursor.close(); // Siempre cierra el cursor para liberar recursos
+        return usuario; // Devuelve el objeto Usuario o null si no se encontró
+    }
+
+
 
 }
 
