@@ -69,7 +69,7 @@
         android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/iv1_crear_u" />
 
     <TextView
         android:id="@+id/tv7_crear_u_direccion"
@@ -150,7 +150,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv2_crear_u_nombre" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv1_crear_u"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -183,7 +183,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toEndOf="@+id/tv5_crear_u_email"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/iv1_crear_u" />
 
     <EditText
         android:id="@+id/edit2_crear_u_apellidos"

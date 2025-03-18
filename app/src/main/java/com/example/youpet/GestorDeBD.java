@@ -23,10 +23,11 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT,apellidos TEXT,telefono TEXT,email TEXT,fechaNacimiento TEXT,direccion TEXT,poblacion TEXT,provincia TEXT,contrasenia TEXT,imagen BLOB)");
-        db.execSQL("CREATE TABLE mascota (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, tipo TEXT, fechaNacimiento TEXT, tamano TEXT, sexo TEXT, castrado TEXT, sociabilidad TEXT, imagen BLOB, FOREIGN KEY(usuarioId) REFERENCES usuario(id))");
-        db.execSQL("CREATE TABLE evento (id INTEGER PRIMARY KEY AUTOINCREMENT,usuarioId INTEGER,nombre TEXT,descripcion TEXT,fecha TEXT,hora TEXT,ubicacion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id))");
-        db.execSQL("CREATE TABLE noticia (id INTEGER PRIMARY KEY AUTOINCREMENT,usuarioId INTEGER,fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP, titulo TEXT, descripcion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id))");
+        db.execSQL("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apellidos TEXT, telefono TEXT, email TEXT, fechaNacimiento TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, contrasenia TEXT, imagen BLOB)");
+        db.execSQL("CREATE TABLE mascota (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, tipo TEXT, fechaNacimiento TEXT, tamano TEXT, sexo TEXT, castrado TEXT, sociabilidad TEXT, imagen BLOB, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
+        db.execSQL("CREATE TABLE evento (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
+        db.execSQL("CREATE TABLE noticia (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP, titulo TEXT, descripcion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
+
 
     }
 
@@ -34,7 +35,12 @@ public class GestorDeBD extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    //Insertar usuario
+
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        db.execSQL("PRAGMA foreign_keys=ON;");
+    }
+
     // Insertar usuario con ContentValues
     public void insertarUsuario(String nombre, String apellidos, String telefono, String email, String fechaNacimiento, String direccion, String poblacion, String provincia, String contrasenia, byte[] imagen) {
         db = this.getWritableDatabase();
@@ -85,10 +91,10 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
         if (resultado == -1) {
             // Si la inserción falla
-            Log.e("DB_ERROR", "Error al insertar el usuario en la base de datos");
+            Log.e("DB_ERROR", "Error al insertar el mascota en la base de datos");
         } else {
             // Si la inserción tiene éxito
-            Log.d("DB_SUCCESS", "Usuario insertado con éxito, ID: " + resultado);
+            Log.d("DB_SUCCESS", "Mascota insertado con éxito, ID: " + resultado);
         }
     }
     //Insertar evento
@@ -109,10 +115,10 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
         if (resultado == -1) {
             // Si la inserción falla
-            Log.e("DB_ERROR", "Error al insertar el usuario en la base de datos");
+            Log.e("DB_ERROR", "Error al insertar el evento en la base de datos");
         } else {
             // Si la inserción tiene éxito
-            Log.d("DB_SUCCESS", "Usuario insertado con éxito, ID: " + resultado);
+            Log.d("DB_SUCCESS", "Evento insertado con éxito, ID: " + resultado);
         }
     }
     public void insertarNoticia(int usuarioId, Date fecha, String titulo, String descripcion){
@@ -144,7 +150,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     public boolean autenticarUsuario(String email, String contrasenia) {
         db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE email = '"+email+"' AND contrasenia = '"+contrasenia+"'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE email = ? AND contrasenia = ?", new String[]{email, contrasenia});
 
         boolean autenticado = cursor.moveToFirst(); // Devuelve true si encontró un usuario
         cursor.close();
@@ -155,10 +161,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
         Usuario usuario = null;
 
         // Usa consultas parametrizadas para evitar inyección SQL
-        Cursor cursor = db.rawQuery(
-                "SELECT * FROM usuario WHERE email = ? AND contrasenia = ?",
-                new String[]{email, contrasenia}
-        );
+        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE email = ? AND contrasenia = ?", new String[]{email, contrasenia});
 
         if (cursor.moveToFirst()) { // Si encuentra un registro
             // Extrae los datos del cursor y crea el objeto Usuario
@@ -174,10 +177,8 @@ public class GestorDeBD extends SQLiteOpenHelper {
             byte[] imagen = cursor.getBlob(cursor.getColumnIndexOrThrow("imagen")); // Campo tipo BLOB
 
             // Crea el objeto Usuario
-            usuario = new Usuario(
-                    id, nombre, apellidos, telefono, email, fechaNacimiento,
-                    direccion, poblacion, provincia, contraseña, imagen
-            );
+            usuario = new Usuario(id, nombre, apellidos, telefono, email, fechaNacimiento,
+                    direccion, poblacion, provincia, contraseña, imagen);
         }
 
         cursor.close(); // Siempre cierra el cursor para liberar recursos

@@ -1,5 +1,6 @@
 package com.example.youpet;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,8 +26,11 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
     protected Intent pasar;
     protected Button b1,b2;
     protected EditText edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8,edit9,edit10;
+    protected ImageView iv1;
     protected GestorDeBD gdb;
+    protected Usuario u1;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,7 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
         gdb = new GestorDeBD(this);
         getSupportActionBar().hide();
 
+        iv1 = findViewById(R.id.iv1_crear_u);
         edit1 = findViewById(R.id.edit1_crear_u_nombre);
         edit2 = findViewById(R.id.edit2_crear_u_apellidos);
         edit3 = findViewById(R.id.edit3_crear_u_telf);
@@ -63,30 +69,44 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nom = edit1.getText().toString();
-                String ape = edit2.getText().toString();
-                String tel = edit3.getText().toString();
-                String email = edit4.getText().toString();
-                String fecha = edit5.getText().toString();
-                String direc = edit6.getText().toString();
-                String pobla = edit7.getText().toString();
-                String provin = edit8.getText().toString();
-                String pass = edit9.getText().toString();
-                byte[] imageBytes = (byte[]) edit10.getTag();
+                try {
+                    String nom = edit1.getText().toString().trim();
+                    String ape = edit2.getText().toString().trim();
+                    String tel = edit3.getText().toString().trim();
+                    String email = edit4.getText().toString().trim();
+                    String fecha = edit5.getText().toString().trim();
+                    String direc = edit6.getText().toString().trim();
+                    String pobla = edit7.getText().toString().trim();
+                    String provin = edit8.getText().toString().trim();
+                    String pass = edit9.getText().toString().trim();
+                    byte[] imageBytes = (byte[]) edit10.getTag();
 
-                if (!nom.isEmpty() && !ape.isEmpty() && !tel.isEmpty() && !email.isEmpty() && !fecha.isEmpty() && !direc.isEmpty() && !pobla.isEmpty() && !provin.isEmpty() && !pass.isEmpty() && imageBytes.length>0) {
-                    // Llama al método para insertar un usuario (ajustar los valores según sea necesario)
-                    gdb.insertarUsuario(nom, ape, tel, email, fecha, direc, pobla, provin,pass, imageBytes);
+                    if (nom.isEmpty() || ape.isEmpty() || tel.isEmpty() || email.isEmpty() || fecha.isEmpty() || direc.isEmpty() || pobla.isEmpty() || provin.isEmpty() || pass.isEmpty() || imageBytes == null || imageBytes.length == 0) {
+                        Toast.makeText(CrearCuentaUsuarioActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // Insertar usuario
+                    gdb.insertarUsuario(nom, ape, tel, email, fecha, direc, pobla, provin, pass, imageBytes);
                     Toast.makeText(CrearCuentaUsuarioActivity.this, "Usuario guardado", Toast.LENGTH_SHORT).show();
 
+                    u1 = gdb.usuarioConectado(email, pass);
+
                     pasar = new Intent(CrearCuentaUsuarioActivity.this, CrearCuentaMascotasActivity.class);
+                    pasar.putExtra("EMAIL", email);
+                    pasar.putExtra("PASS", pass);
+                    pasar.putExtra("ID", u1.getId());
                     startActivity(pasar);
-                } else {
-                    Toast.makeText(CrearCuentaUsuarioActivity.this, "Por favor rellene los campos", Toast.LENGTH_SHORT).show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(CrearCuentaUsuarioActivity.this, "Error al crear usuario", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -99,6 +119,10 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
                     bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
                     byte[] imageBytes = stream.toByteArray();
 
+                    // Establece el Bitmap en el ImageView
+                    iv1.setImageBitmap(bitmap);
+
+                    // Guarda la imagen como un Tag en el EditText (como ya hacías)
                     edit10.setTag(imageBytes);
                     edit10.setText("Imagen seleccionada correctamente");
                 } catch (Exception e) {
@@ -111,7 +135,6 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
         } else if (resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "Selección de imagen cancelada", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 }

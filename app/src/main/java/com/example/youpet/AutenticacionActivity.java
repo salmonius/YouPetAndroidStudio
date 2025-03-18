@@ -18,6 +18,7 @@ public class AutenticacionActivity extends AppCompatActivity {
     protected Button b1,b2;
     protected Intent pasar;
     protected GestorDeBD gbd;
+    protected Usuario u1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,12 +53,14 @@ public class AutenticacionActivity extends AppCompatActivity {
 
                 gbd = new GestorDeBD(AutenticacionActivity.this);
                 boolean autenticado = gbd.autenticarUsuario(email, contrasenia);
+                u1 = gbd.usuarioConectado(email,contrasenia);
 
                 if (autenticado) {
                     // Si es exitoso, pasar a la siguiente actividad
                     pasar = new Intent(AutenticacionActivity.this, PrincipalActivity.class);
                     pasar.putExtra("EMAIL",email);
                     pasar.putExtra("PASS",contrasenia);
+                    pasar.putExtra("ID",u1.getId());
                     startActivity(pasar);
                     finish();
                 } else {
