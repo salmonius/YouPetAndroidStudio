@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,12 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class PerfilActivity extends AppCompatActivity {
+    protected RecyclerView rv1,rv2;
     protected ImageButton ib1,ib2,ib3,ib4,ib5;
     protected Button b1,b2;
     protected ImageView iv1;
@@ -30,6 +37,11 @@ public class PerfilActivity extends AppCompatActivity {
     protected String email,contrasenia;
     protected Usuario u1;
     protected GestorDeBD gbd;
+    protected List<Mascota> listaMascota;
+    protected int[] id,usuarioId;
+    protected String[] nombre,tipo,edad,tamanio,sexo,castrado,sociabilidad;
+    protected byte[][] imagenes;
+    protected Mascota m1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +55,8 @@ public class PerfilActivity extends AppCompatActivity {
         });
         getSupportActionBar().hide();
 
+        rv1 = findViewById(R.id.rv1_perfil);
+        rv2 = findViewById(R.id.rv2_perfil);
         ib1 = findViewById(R.id.ib1_perfil_atras);
         ib2 = findViewById(R.id.ib2_perfil_editar_foto);
         ib3 = findViewById(R.id.ib3_perfil_editar_datos_usuario);
@@ -99,6 +113,41 @@ public class PerfilActivity extends AppCompatActivity {
             return;
         }
 
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv1.setLayoutManager(llm);
+        rv1.setAdapter(new AdaptadorMascotas());
+
+        listaMascota = gbd.recuperarMascotasPorUsuario(extra.getInt("ID"));
+
+        id = new int[listaMascota.size()];
+        usuarioId = new int[listaMascota.size()];
+        nombre = new String[listaMascota.size()];
+        tipo = new String[listaMascota.size()];
+        edad = new String[listaMascota.size()];
+        tamanio = new String[listaMascota.size()];
+        sexo = new String[listaMascota.size()];
+        castrado = new String[listaMascota.size()];
+        sociabilidad = new String[listaMascota.size()];
+        imagenes = new byte[listaMascota.size()][];
+
+
+
+        for (int i=0;i< listaMascota.size();i++){
+
+            m1 = listaMascota.get(i);
+
+            id[i] = m1.getId();
+            usuarioId[i] = m1.getUsuarioId();
+            nombre[i] = m1.getNombre();
+            tipo[i] = m1.getTipo();
+            edad[i] = m1.getFecha();
+            tamanio[i] = m1.getTamano();
+            sexo[i] = m1.getSexo();
+            castrado[i] = m1.getCastrado();
+            sociabilidad[i] = m1.getSociabilidad();
+            imagenes[i] = m1.getImagen();
+        }
+
         ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,5 +191,58 @@ public class PerfilActivity extends AppCompatActivity {
         edit8.setEnabled(false);
         b1.setVisibility(View.INVISIBLE);
         b2.setVisibility(View.INVISIBLE);
+    }
+
+    private class AdaptadorMascotas extends RecyclerView.Adapter<AdaptadorMascotas.AdaptadorMascotasHolder> {
+
+        @NonNull
+        @Override
+        public AdaptadorMascotasHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new AdaptadorMascotasHolder(getLayoutInflater().inflate(R.layout.item_perfil_mascota, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull AdaptadorMascotasHolder holder, int position) {
+            holder.imprimir(position);
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return listaMascota.size();
+        }
+
+        private class AdaptadorMascotasHolder extends RecyclerView.ViewHolder{
+
+            EditText edit1t,edit2t,edit3t,edit4t,edit5t,edit6t,edit7t;
+            ImageView iv1t;
+            public AdaptadorMascotasHolder(@NonNull View itemView) {
+                super(itemView);
+
+                edit1t = itemView.findViewById(R.id.item_edit1_mascotas_nombre);
+                edit2t = itemView.findViewById(R.id.item_edit2_mascotas_tipo);
+                edit3t = itemView.findViewById(R.id.item_edit3_mascotas_edad);
+                edit4t = itemView.findViewById(R.id.item_edit4_mascotas_tamano);
+                edit5t = itemView.findViewById(R.id.item_edit5_mascotas_sexo);
+                edit6t = itemView.findViewById(R.id.item_edit6_mascotas_castrado);
+                edit7t = itemView.findViewById(R.id.item_edit7_mascotas_sociabilidad);
+                iv1t = itemView.findViewById(R.id.item_iv1_mascota);
+            }
+
+            public void imprimir(int position) {
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imagenes[position], 0, imagenes[position].length);
+                if(iv1t != null) {
+                    iv1t.setImageBitmap(bitmap);
+                }
+                edit1t.setText(nombre[position]);
+                edit2t.setText(tipo[position]);
+                edit3t.setText(edad[position]);
+                edit4t.setText(tamanio[position]);
+                edit5t.setText(sexo[position]);
+                edit6t.setText(castrado[position]);
+                edit7t.setText(sociabilidad[position]);
+            }
+        }
     }
 }

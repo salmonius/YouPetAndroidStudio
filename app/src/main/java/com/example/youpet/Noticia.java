@@ -4,10 +4,9 @@ import java.util.Date;
 
 public class Noticia {
     private int id,usuarioId;
-    private Date fecha;
-    private String titulo,descripcion;
+    private String titulo,descripcion,fecha;
 
-    public Noticia(int id, int usuarioId, Date fecha, String titulo, String descripcion) {
+    public Noticia(int id, int usuarioId, String fecha, String titulo, String descripcion) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.fecha = fecha;
@@ -31,11 +30,11 @@ public class Noticia {
         this.usuarioId = usuarioId;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

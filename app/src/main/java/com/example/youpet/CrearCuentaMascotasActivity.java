@@ -20,6 +20,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CrearCuentaMascotasActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1; // Código para seleccionar imagen
@@ -77,15 +79,17 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
         b2.setOnClickListener(v -> {
             String nom = edit1.getText().toString().trim();
             String tipo = edit2.getText().toString().trim();
-            String edad = edit3.getText().toString().trim();
+            String fecha = edit3.getText().toString().trim();
             String tamanio = edit4.getText().toString().trim();
             String sexo = edit5.getText().toString().trim();
             String castrado = edit6.getText().toString().trim();
             String social = edit7.getText().toString().trim();
             byte[] imageBytes = (byte[]) edit8.getTag();
 
+
+
             // Validar campos
-            if (nom.isEmpty() || tipo.isEmpty() || edad.isEmpty() || tamanio.isEmpty() || sexo.isEmpty() || castrado.isEmpty() || social.isEmpty() || imageBytes == null || imageBytes.length == 0) {
+            if (nom.isEmpty() || tipo.isEmpty() || fecha.isEmpty() || tamanio.isEmpty() || sexo.isEmpty() || castrado.isEmpty() || social.isEmpty() || imageBytes == null || imageBytes.length == 0) {
                 Toast.makeText(CrearCuentaMascotasActivity.this, "Por favor rellene todos los campos y seleccione una imagen", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -93,31 +97,47 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
             // Insertar datos
             try {
                 if (id != 0) {
-                    gdb.insertarMascotas(id, nom, tipo, edad, tamanio, sexo, castrado, social, imageBytes);
+                    gdb.insertarMascotas(id, nom, tipo,fecha, tamanio, sexo, castrado, social, imageBytes);
                     Toast.makeText(CrearCuentaMascotasActivity.this, "Mascota guardada con éxito", Toast.LENGTH_SHORT).show();
+                    pasar = new Intent(CrearCuentaMascotasActivity.this, PrincipalActivity.class);
+                    pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+                    pasar.putExtra("PASS",extras.getString("PASS"));
+                    pasar.putExtra("ID",id);
+                    startActivity(pasar);
                 }
                 if (id2 != 0) {
-                    gdb.insertarMascotas(id2, nom, tipo, edad, tamanio, sexo, castrado, social, imageBytes);
+                    gdb.insertarMascotas(id2, nom, tipo,fecha, tamanio, sexo, castrado, social, imageBytes);
                     Toast.makeText(CrearCuentaMascotasActivity.this, "Mascota guardada con éxito", Toast.LENGTH_SHORT).show();
+                    pasar = new Intent(CrearCuentaMascotasActivity.this, PrincipalActivity.class);
+                    pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+                    pasar.putExtra("PASS",extras.getString("PASS"));
+                    pasar.putExtra("ID",id2);
+                    startActivity(pasar);
                 }
             } catch (Exception e) {
                 Log.e("INSERT_ERROR", "Error al guardar la mascota", e);
                 Toast.makeText(CrearCuentaMascotasActivity.this, "Ocurrió un error al guardar la mascota", Toast.LENGTH_SHORT).show();
             }
 
-            // Redirigir a la actividad principal
-            pasar = new Intent(CrearCuentaMascotasActivity.this, PrincipalActivity.class);
-            pasar.putExtra("EMAIL",extras.getString("EMAIL"));
-            pasar.putExtra("PASS",extras.getString("PASS"));
-            startActivity(pasar);
+
         });
 
         // Botón para omitir creación
         b3.setOnClickListener(v -> {
-            pasar = new Intent(CrearCuentaMascotasActivity.this, PrincipalActivity.class);
-            pasar.putExtra("EMAIL",extras.getString("EMAIL"));
-            pasar.putExtra("PASS",extras.getString("PASS"));
-            startActivity(pasar);
+            if (id != 0) {
+                pasar = new Intent(CrearCuentaMascotasActivity.this, PrincipalActivity.class);
+                pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+                pasar.putExtra("PASS",extras.getString("PASS"));
+                pasar.putExtra("ID",id);
+                startActivity(pasar);
+            }
+            if (id2 != 0) {
+                pasar = new Intent(CrearCuentaMascotasActivity.this, PrincipalActivity.class);
+                pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+                pasar.putExtra("PASS",extras.getString("PASS"));
+                pasar.putExtra("ID",id2);
+                startActivity(pasar);
+            }
         });
     }
 

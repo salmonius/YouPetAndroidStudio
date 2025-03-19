@@ -11,8 +11,10 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class GestorDeBD extends SQLiteOpenHelper {
     protected SQLiteDatabase db;
@@ -23,12 +25,10 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apellidos TEXT, telefono TEXT, email TEXT, fechaNacimiento TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, contrasenia TEXT, imagen BLOB)");
-        db.execSQL("CREATE TABLE mascota (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, tipo TEXT, fechaNacimiento TEXT, tamano TEXT, sexo TEXT, castrado TEXT, sociabilidad TEXT, imagen BLOB, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
+        db.execSQL("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apellidos TEXT, telefono TEXT, email TEXT, fechaNacimiento TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, contrasenia TEXT, imagen BLOB)"); // Cambio aquí: fechaNacimiento -> fecha
+        db.execSQL("CREATE TABLE mascota (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, tipo TEXT, fecha TEXT, tamano TEXT, sexo TEXT, castrado TEXT, sociabilidad TEXT, imagen BLOB, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)"); // Cambio aquí: fechaNacimiento -> fecha
         db.execSQL("CREATE TABLE evento (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
-        db.execSQL("CREATE TABLE noticia (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP, titulo TEXT, descripcion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
-
-
+        db.execSQL("CREATE TABLE noticia (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, fecha_hora TEXT, titulo TEXT, descripcion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
     }
 
     @Override
@@ -94,7 +94,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
             Log.e("DB_ERROR", "Error al insertar el mascota en la base de datos");
         } else {
             // Si la inserción tiene éxito
-            Log.d("DB_SUCCESS", "Mascota insertado con éxito, ID: " + resultado);
+            Log.d("DB_SUCCESS", "Mascota insertada con éxito, ID: " + resultado);
         }
     }
     //Insertar evento
@@ -121,18 +121,14 @@ public class GestorDeBD extends SQLiteOpenHelper {
             Log.d("DB_SUCCESS", "Evento insertado con éxito, ID: " + resultado);
         }
     }
-    public void insertarNoticia(int usuarioId, Date fecha, String titulo, String descripcion){
+    public void insertarNoticia(int usuarioId, String fecha_hora, String titulo, String descripcion){
         db = this.getWritableDatabase();
 
-        // Formatear la fecha para almacenarla en formato 'DATETIME'
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String fechaFormateada = sdf.format(fecha);
 
         // Usamos ContentValues para evitar construir consultas SQL manuales
         ContentValues values = new ContentValues();
         values.put("usuarioId", usuarioId);
-        values.put("fecha_hora", fechaFormateada); // Campo 'DATETIME'
+        values.put("fecha_hora", fecha_hora); // Campo 'DATETIME'
         values.put("titulo", titulo);
         values.put("descripcion", descripcion);
 
@@ -184,6 +180,39 @@ public class GestorDeBD extends SQLiteOpenHelper {
         cursor.close(); // Siempre cierra el cursor para liberar recursos
         return usuario; // Devuelve el objeto Usuario o null si no se encontró
     }
+
+    public List<Mascota> recuperarMascotasPorUsuario(int idU) {
+        db = this.getReadableDatabase();
+        List<Mascota> listaMascotas = new ArrayList<>();
+
+        // Usa una consulta parametrizada para obtener todas las mascotas de un usuario específico
+        Cursor cursor = db.rawQuery("SELECT * FROM mascota WHERE usuarioId = ?", new String[]{String.valueOf(idU)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Extrae los datos del cursor y crea el objeto Mascota
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                int usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow("usuarioId"));
+                String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                String tipo = cursor.getString(cursor.getColumnIndexOrThrow("tipo"));
+                String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
+                String tamano = cursor.getString(cursor.getColumnIndexOrThrow("tamano"));
+                String sexo = cursor.getString(cursor.getColumnIndexOrThrow("sexo"));
+                String castrado = cursor.getString(cursor.getColumnIndexOrThrow("castrado"));
+                String sociabilidad = cursor.getString(cursor.getColumnIndexOrThrow("sociabilidad"));
+                byte[] imagen = cursor.getBlob(cursor.getColumnIndexOrThrow("imagen")); // Campo tipo BLOB
+
+                // Crea el objeto Mascota y añádelo a la lista
+                Mascota mascota = new Mascota(id, usuarioId, nombre, tipo, fecha, tamano, sexo, castrado, sociabilidad, imagen);
+                listaMascotas.add(mascota);
+            } while (cursor.moveToNext()); // Continúa mientras haya más filas
+        }
+
+        cursor.close(); // Siempre cierra el cursor para liberar recursos
+        return listaMascotas; // Devuelve la lista de mascotas para el usuario con idU (vacía si no se encuentra ninguna)
+    }
+
+
 
 
 

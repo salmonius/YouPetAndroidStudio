@@ -14,6 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class PrincipalActivity extends AppCompatActivity {
     protected Button b1,b2,b3,b4,b5,b6,b7,b8;
     protected Intent pasar;
@@ -62,6 +65,10 @@ public class PrincipalActivity extends AppCompatActivity {
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Date fechaHoraActual = new Date();
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String fechaHoraString = formato.format(fechaHoraActual);
+
 
             }
         });
@@ -81,6 +88,7 @@ public class PrincipalActivity extends AppCompatActivity {
             pasar = new Intent(PrincipalActivity.this,PerfilActivity.class);
             pasar.putExtra("EMAIL",extras.getString("EMAIL"));
             pasar.putExtra("PASS",extras.getString("PASS"));
+            pasar.putExtra("ID",extras.getInt("ID"));
             startActivity(pasar);
 
         }

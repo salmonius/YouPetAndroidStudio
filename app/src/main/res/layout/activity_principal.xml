@@ -439,11 +439,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tv8_principal_tablon" />
 
     <EditText
-        android:id="@+id/edit1_principal"
+        android:id="@+id/edit2_principal_descripcion"
         android:layout_width="220dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Escriba aquí su noticia"
@@ -451,8 +451,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv1_principal"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toBottomOf="@+id/edit1_principal_titulo" />
 
     <Button
         android:id="@+id/b8_principal_crear_noticia"
@@ -466,9 +465,24 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toEndOf="@+id/edit1_principal"
+        app:layout_constraintStart_toEndOf="@+id/edit2_principal_descripcion"
         app:layout_constraintTop_toBottomOf="@+id/lv1_principal"
         app:strokeColor="#000000"
         app:strokeWidth="@dimen/cardview_compat_inset_shadow" />
+
+    <EditText
+        android:id="@+id/edit1_principal_titulo"
+        android:layout_width="176dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="Titulo"
+        android:inputType="text"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv1_principal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

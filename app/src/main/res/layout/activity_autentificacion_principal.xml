@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit1_principal" />
+        app:layout_constraintTop_toBottomOf="@+id/edit2_principal_descripcion" />
 
     <Button
         android:id="@+id/b1_principal"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit2_principal" />
 
     <EditText
-        android:id="@+id/edit1_principal"
+        android:id="@+id/edit2_principal_descripcion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

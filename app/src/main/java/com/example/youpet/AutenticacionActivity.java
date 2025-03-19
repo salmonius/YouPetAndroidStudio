@@ -33,7 +33,7 @@ public class AutenticacionActivity extends AppCompatActivity {
         });
         getSupportActionBar().hide();
 
-        edit1 = findViewById(R.id.edit1_principal);
+        edit1 = findViewById(R.id.edit2_principal_descripcion);
         edit2 = findViewById(R.id.edit2_principal);
         b1 = findViewById(R.id.b1_principal);
         b2 = findViewById(R.id.b2_principal);

@@ -7,7 +7,7 @@
     android:background="#A7F2E8">
 
     <ImageView
-        android:id="@+id/item_iv1_eventos"
+        android:id="@+id/item_iv1_evento"
         android:layout_width="79dp"
         android:layout_height="68dp"
         app:srcCompat="@drawable/pata"
