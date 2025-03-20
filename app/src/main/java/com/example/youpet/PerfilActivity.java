@@ -1,10 +1,14 @@
 package com.example.youpet;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,21 +21,24 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class PerfilActivity extends AppCompatActivity {
+    private static final int PICK_IMAGE = 1;
     protected RecyclerView rv1,rv2;
     protected ImageButton ib1,ib2,ib3,ib4,ib5;
     protected Button b1,b2;
     protected ImageView iv1;
     protected TextView tv1;
-    protected EditText edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8;
+    protected EditText edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8,edit9;
     protected Intent atras;
     protected Bundle extra;
     protected String email,contrasenia;
@@ -42,7 +49,10 @@ public class PerfilActivity extends AppCompatActivity {
     protected String[] nombre,tipo,edad,tamanio,sexo,castrado,sociabilidad;
     protected byte[][] imagenes;
     protected Mascota m1;
+    protected boolean edicionMascotaHabilitada = false;
+    protected boolean edicionUsuarioHabilitada = false;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +65,7 @@ public class PerfilActivity extends AppCompatActivity {
         });
         getSupportActionBar().hide();
 
+        //bloque de referenciacion
         rv1 = findViewById(R.id.rv1_perfil);
         rv2 = findViewById(R.id.rv2_perfil);
         ib1 = findViewById(R.id.ib1_perfil_atras);
@@ -74,12 +85,15 @@ public class PerfilActivity extends AppCompatActivity {
         edit6 = findViewById(R.id.edit6_perfil_email);
         edit7 = findViewById(R.id.edit7_perfil_direccion);
         edit8 = findViewById(R.id.edit8_perfil_provincia);
+        edit9 = findViewById(R.id.edit9_perfil_imagen);
 
+        //metodo que inabilita los EditText
         desabilitarEdicion();
 
+        //recogemos datos de otras pantallas
         extra = getIntent().getExtras();
 
-
+        //apartir del email y de la contraseña creamos un objeto de tipo Usuario
         if (extra != null) {
             email = extra.getString("EMAIL");
             contrasenia = extra.getString("PASS");
@@ -88,8 +102,9 @@ public class PerfilActivity extends AppCompatActivity {
             return; // Opcionalmente termina aquí si no hay extras
         }
         gbd = new GestorDeBD(this);
-        u1 = gbd.usuarioConectado(email,contrasenia);
+        u1 = gbd.usuarioConectado(email, contrasenia);
 
+        //recuperamos la imagen y el resto de datos para mostrarlos
         if (u1 != null) {
             byte[] imagenBytes = u1.getImagen();
             if (imagenBytes != null) {
@@ -113,12 +128,14 @@ public class PerfilActivity extends AppCompatActivity {
             return;
         }
 
+        //llamaos a la construcion de los RecyclerView
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv1.setLayoutManager(llm);
         rv1.setAdapter(new AdaptadorMascotas());
 
+        //recuperamos los datos de las mascotas de un Usuario por su ID
         listaMascota = gbd.recuperarMascotasPorUsuario(extra.getInt("ID"));
-
+        //inicializamos los Arrays necesarios para los RecyclerView
         id = new int[listaMascota.size()];
         usuarioId = new int[listaMascota.size()];
         nombre = new String[listaMascota.size()];
@@ -130,9 +147,8 @@ public class PerfilActivity extends AppCompatActivity {
         sociabilidad = new String[listaMascota.size()];
         imagenes = new byte[listaMascota.size()][];
 
-
-
-        for (int i=0;i< listaMascota.size();i++){
+        //rellenamos con un bucle for los Arrays
+        for (int i = 0; i < listaMascota.size(); i++) {
 
             m1 = listaMascota.get(i);
 
@@ -148,17 +164,18 @@ public class PerfilActivity extends AppCompatActivity {
             imagenes[i] = m1.getImagen();
         }
 
-        ib1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                atras = new Intent(PerfilActivity.this, PrincipalActivity.class);
-                startActivity(atras);
-            }
+        //ImagenButton para ir hacia atras
+        ib1.setOnClickListener(v -> {
+            atras = new Intent(PerfilActivity.this, PrincipalActivity.class);
+            startActivity(atras);
+
         });
 
-        ib3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //ImagenButton para editar los datos del Usuario
+        ib3.setOnClickListener(v -> {
+
+            edicionUsuarioHabilitada = !edicionUsuarioHabilitada;
+            if (edicionUsuarioHabilitada) {
                 edit1.setEnabled(true);
                 edit1.setBackgroundColor(Color.WHITE);
                 edit2.setEnabled(true);
@@ -177,10 +194,91 @@ public class PerfilActivity extends AppCompatActivity {
                 edit8.setBackgroundColor(Color.WHITE);
                 b1.setVisibility(View.VISIBLE);
                 b2.setVisibility(View.VISIBLE);
+                ib2.setVisibility(View.VISIBLE);
+            }else{
+                edit1.setEnabled(false);
+                edit1.setBackgroundColor(Color.TRANSPARENT);
+                edit2.setEnabled(false);
+                edit2.setBackgroundColor(Color.TRANSPARENT);
+                edit3.setEnabled(false);
+                edit3.setBackgroundColor(Color.TRANSPARENT);
+                edit4.setEnabled(false);
+                edit4.setBackgroundColor(Color.TRANSPARENT);
+                edit5.setEnabled(false);
+                edit5.setBackgroundColor(Color.TRANSPARENT);
+                edit6.setEnabled(false);
+                edit6.setBackgroundColor(Color.TRANSPARENT);
+                edit7.setEnabled(false);
+                edit7.setBackgroundColor(Color.TRANSPARENT);
+                edit8.setEnabled(false);
+                edit8.setBackgroundColor(Color.TRANSPARENT);
+                b1.setVisibility(View.INVISIBLE);
+                b2.setVisibility(View.INVISIBLE);
+                ib2.setVisibility(View.INVISIBLE);
+
             }
         });
+
+
+            b1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String nombre = edit1.getText().toString();
+                    String apellidos = edit2.getText().toString();
+                    String fecha = edit3.getText().toString();
+                    String poblacion = edit4.getText().toString();
+                    String telefono = edit5.getText().toString();
+                    String email = edit6.getText().toString();
+                    String direccion = edit7.getText().toString();
+                    String provincia = edit8.getText().toString();
+                    byte[] imagen = (byte[]) edit9.getTag();
+
+                    if (nombre.isEmpty()||apellidos.isEmpty()||fecha.isEmpty()||poblacion.isEmpty()||telefono.isEmpty()||email.isEmpty()||direccion.isEmpty()||provincia.isEmpty()){
+                        Toast.makeText(PerfilActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else if(imagen.length ==0) {
+                        boolean esActualizable = gbd.actualizarUsuario(extra.getInt("ID"), nombre, apellidos, telefono, email, fecha, direccion, poblacion, provincia, extra.getString("PASS"), u1.getImagen());
+
+
+                        if (esActualizable){
+                            Toast.makeText(PerfilActivity.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(PerfilActivity.this, "Ocurrio algun error inesperado", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        boolean esActualizable = gbd.actualizarUsuario(extra.getInt("ID"), nombre, apellidos, telefono, email, fecha, direccion, poblacion, provincia, extra.getString("PASS"), imagen);
+
+                        if (esActualizable){
+                            Toast.makeText(PerfilActivity.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(PerfilActivity.this, "Ocurrio algun error inesperado", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                }
+            });
+
+
+        ib2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, PICK_IMAGE);
+            }
+        });
+
+        //ImagenButton para habilitar los campos del RecyclerView
+        ib4.setOnClickListener(v -> {
+            edicionMascotaHabilitada = !edicionMascotaHabilitada;
+            Log.d("PerfilActivity", "Edición habilitada: " + edicionMascotaHabilitada); // Verifica el estado
+            rv1.getAdapter().notifyDataSetChanged();
+        });
+
+
     }
-    public void desabilitarEdicion(){
+
+    public void desabilitarEdicion() {
         edit1.setEnabled(false);
         edit2.setEnabled(false);
         edit3.setEnabled(false);
@@ -189,8 +287,10 @@ public class PerfilActivity extends AppCompatActivity {
         edit6.setEnabled(false);
         edit7.setEnabled(false);
         edit8.setEnabled(false);
+        edit9.setVisibility(View.GONE);
         b1.setVisibility(View.INVISIBLE);
         b2.setVisibility(View.INVISIBLE);
+        ib2.setVisibility(View.INVISIBLE);
     }
 
     private class AdaptadorMascotas extends RecyclerView.Adapter<AdaptadorMascotas.AdaptadorMascotasHolder> {
@@ -204,7 +304,6 @@ public class PerfilActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull AdaptadorMascotasHolder holder, int position) {
             holder.imprimir(position);
-
         }
 
         @Override
@@ -212,10 +311,12 @@ public class PerfilActivity extends AppCompatActivity {
             return listaMascota.size();
         }
 
-        private class AdaptadorMascotasHolder extends RecyclerView.ViewHolder{
+        private class AdaptadorMascotasHolder extends RecyclerView.ViewHolder {
 
-            EditText edit1t,edit2t,edit3t,edit4t,edit5t,edit6t,edit7t;
+            EditText edit1t, edit2t, edit3t, edit4t, edit5t, edit6t, edit7t;
             ImageView iv1t;
+            Button b1t, b2t;
+
             public AdaptadorMascotasHolder(@NonNull View itemView) {
                 super(itemView);
 
@@ -227,14 +328,17 @@ public class PerfilActivity extends AppCompatActivity {
                 edit6t = itemView.findViewById(R.id.item_edit6_mascotas_castrado);
                 edit7t = itemView.findViewById(R.id.item_edit7_mascotas_sociabilidad);
                 iv1t = itemView.findViewById(R.id.item_iv1_mascota);
+                b1t = itemView.findViewById(R.id.item_b1_mascotas_guardar);
+                b2t = itemView.findViewById(R.id.item_b2_mascotas_eliminar);
             }
 
+            @SuppressLint("ResourceType")
             public void imprimir(int position) {
-
+                // Configuración de la imagen de la mascota
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imagenes[position], 0, imagenes[position].length);
-                if(iv1t != null) {
-                    iv1t.setImageBitmap(bitmap);
-                }
+                iv1t.setImageBitmap(bitmap);
+
+                // Establecer valores de texto
                 edit1t.setText(nombre[position]);
                 edit2t.setText(tipo[position]);
                 edit3t.setText(edad[position]);
@@ -242,7 +346,75 @@ public class PerfilActivity extends AppCompatActivity {
                 edit5t.setText(sexo[position]);
                 edit6t.setText(castrado[position]);
                 edit7t.setText(sociabilidad[position]);
+
+                // Habilitar/deshabilitar la edición
+                boolean esEditable = edicionMascotaHabilitada;
+                edit1t.setEnabled(esEditable);
+                edit2t.setEnabled(esEditable);
+                edit3t.setEnabled(esEditable);
+                edit4t.setEnabled(esEditable);
+                edit5t.setEnabled(esEditable);
+                edit6t.setEnabled(esEditable);
+                edit7t.setEnabled(esEditable);
+
+                // Cambiar el color de fondo solo si la edición está habilitada
+                if (esEditable) {
+                    edit1t.setBackgroundColor(Color.WHITE);
+                    edit2t.setBackgroundColor(Color.WHITE);
+                    edit3t.setBackgroundColor(Color.WHITE);
+                    edit4t.setBackgroundColor(Color.WHITE);
+                    edit5t.setBackgroundColor(Color.WHITE);
+                    edit6t.setBackgroundColor(Color.WHITE);
+                    edit7t.setBackgroundColor(Color.WHITE);
+                }else{
+                    edit1t.setBackgroundColor(Color.TRANSPARENT);
+                    edit2t.setBackgroundColor(Color.TRANSPARENT);
+                    edit3t.setBackgroundColor(Color.TRANSPARENT);
+                    edit4t.setBackgroundColor(Color.TRANSPARENT);
+                    edit5t.setBackgroundColor(Color.TRANSPARENT);
+                    edit6t.setBackgroundColor(Color.TRANSPARENT);
+                    edit7t.setBackgroundColor(Color.TRANSPARENT);
+                }
+
+                // Mostrar/ocultar los botones
+                b1t.setVisibility(esEditable ? View.VISIBLE : View.INVISIBLE);
+                b2t.setVisibility(esEditable? View.VISIBLE : View.INVISIBLE);
+
+                // Hacer que el ImageView sea clickeable solo cuando la edición está habilitada
+                iv1t.setClickable(esEditable);
+                iv1t.setEnabled(esEditable);
             }
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();
+            if (selectedImage != null) {
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
+                    byte[] imageBytes = stream.toByteArray();
+
+                    // Establece el Bitmap en el ImageView
+                    iv1.setImageBitmap(bitmap);
+
+                    // Guarda la imagen como un Tag en el EditText (como ya hacías)
+                    edit9.setTag(imageBytes);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Error al procesar la imagen seleccionada", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "No se seleccionó una imagen válida", Toast.LENGTH_SHORT).show();
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Selección de imagen cancelada", Toast.LENGTH_SHORT).show();
         }
     }
 }

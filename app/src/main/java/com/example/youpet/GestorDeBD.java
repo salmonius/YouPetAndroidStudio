@@ -1,6 +1,5 @@
 package com.example.youpet;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,10 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class GestorDeBD extends SQLiteOpenHelper {
@@ -143,6 +139,55 @@ public class GestorDeBD extends SQLiteOpenHelper {
             Log.d("DB_SUCCESS", "Noticia insertada con éxito, ID: " + resultado);
         }
     }
+
+    public boolean actualizarUsuario(int id, String nombre, String apellidos, String telefono, String email, String fechaNacimiento, String direccion, String poblacion, String provincia,String contrasenia, byte[] imagen) {
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("nombre", nombre);
+        values.put("apellidos", apellidos);
+        values.put("telefono", telefono);
+        values.put("email", email);
+        values.put("fechaNacimiento", fechaNacimiento);
+        values.put("direccion", direccion);
+        values.put("poblacion", poblacion);
+        values.put("provincia", provincia);
+        values.put("contrasenia", contrasenia);
+        values.put("imagen", imagen);
+
+        int filasAfectadas = db.update("usuario", values, "id = ?", new String[]{String.valueOf(id)});
+        return filasAfectadas > 0; // Retorna true si se actualizó al menos una fila
+    }
+
+
+    public boolean actualizarMascota(int id, String nombre, String tipo, String edad, String tamanio, String sexo, String castrado, String sociabilidad,byte[] imagen) {
+        // Abrimos la base de datos en modo escritura
+        db = this.getWritableDatabase();
+
+        // Creamos un ContentValues para almacenar los datos que queremos actualizar
+        ContentValues values = new ContentValues();
+        values.put("nombre", nombre);
+        values.put("tipo", tipo);
+        values.put("edad", edad);
+        values.put("tamanio", tamanio);
+        values.put("sexo", sexo);
+        values.put("castrado", castrado);
+        values.put("sociabilidad", sociabilidad);
+        values.put("imagen", imagen);
+
+
+        // Actualizamos el registro en la tabla "mascotas" donde el ID coincida con el que nos pasaron
+        int filasAfectadas = db.update("mascotas", values, "id = ?", new String[]{String.valueOf(id)});
+        return filasAfectadas > 0; // Retorna true si se actualizó al menos una fila
+
+    }
+
+
+
+
+
+
+
 
     public boolean autenticarUsuario(String email, String contrasenia) {
         db = this.getReadableDatabase();

@@ -219,7 +219,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/white"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.586"
         app:layout_constraintStart_toEndOf="@+id/tv5_crear_u_email"

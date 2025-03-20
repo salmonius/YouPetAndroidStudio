@@ -19,9 +19,9 @@
 
         <EditText
             android:id="@+id/item_edit1_mascotas_nombre"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Nombre"
@@ -29,9 +29,9 @@
 
         <EditText
             android:id="@+id/item_edit2_mascotas_tipo"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Tipo"
@@ -39,9 +39,9 @@
 
         <EditText
             android:id="@+id/item_edit3_mascotas_edad"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Edad"
@@ -50,8 +50,8 @@
         <EditText
             android:id="@+id/item_edit4_mascotas_tamano"
             android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_height="36dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Tamaño"
@@ -66,8 +66,8 @@
         <EditText
             android:id="@+id/item_edit5_mascotas_sexo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_height="38dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Sexo"
@@ -76,8 +76,8 @@
         <EditText
             android:id="@+id/item_edit6_mascotas_castrado"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_height="46dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="¿castrado?"
@@ -86,8 +86,8 @@
         <EditText
             android:id="@+id/item_edit7_mascotas_sociabilidad"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_height="40dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Sociabilidad"

@@ -147,10 +147,10 @@
 
     <ImageButton
         android:id="@+id/ib2_perfil_editar_foto"
-        android:layout_width="19dp"
-        android:layout_height="15dp"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
         android:layout_marginTop="96dp"
-        android:background="@drawable/ajustes"
+        android:background="@drawable/subiendo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/iv1_perfil"
@@ -354,5 +354,15 @@
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toEndOf="@+id/b1_perfil_guardar"
         app:layout_constraintTop_toBottomOf="@+id/edit8_perfil_provincia" />
+
+    <EditText
+        android:id="@+id/edit9_perfil_imagen"
+        android:layout_width="31dp"
+        android:layout_height="24dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
