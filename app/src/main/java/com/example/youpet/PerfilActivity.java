@@ -33,12 +33,13 @@ import java.util.List;
 
 public class PerfilActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
+    private static final int PICK_IMAGEN = 2;
     protected RecyclerView rv1,rv2;
     protected ImageButton ib1,ib2,ib3,ib4,ib5;
     protected Button b1,b2;
-    protected ImageView iv1;
+    protected ImageView iv1,iv1t;
     protected TextView tv1;
-    protected EditText edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8,edit9;
+    protected EditText edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8,edit9,edit8t;
     protected Intent atras;
     protected Bundle extra;
     protected String email,contrasenia;
@@ -237,7 +238,7 @@ public class PerfilActivity extends AppCompatActivity {
                     if (nombre.isEmpty()||apellidos.isEmpty()||fecha.isEmpty()||poblacion.isEmpty()||telefono.isEmpty()||email.isEmpty()||direccion.isEmpty()||provincia.isEmpty()){
                         Toast.makeText(PerfilActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
                         return;
-                    }else if(imagen.length ==0) {
+                    }else if(imagen == null ||imagen.length ==0) {
                         boolean esActualizable = gbd.actualizarUsuario(extra.getInt("ID"), nombre, apellidos, telefono, email, fecha, direccion, poblacion, provincia, extra.getString("PASS"), u1.getImagen());
 
 
@@ -255,6 +256,17 @@ public class PerfilActivity extends AppCompatActivity {
                             Toast.makeText(PerfilActivity.this, "Ocurrio algun error inesperado", Toast.LENGTH_SHORT).show();
                         }
                     }
+                    // Verifica el estado
+                    desabilitarEdicion();
+                    edit1.setBackgroundColor(Color.TRANSPARENT);
+                    edit2.setBackgroundColor(Color.TRANSPARENT);
+                    edit3.setBackgroundColor(Color.TRANSPARENT);
+                    edit4.setBackgroundColor(Color.TRANSPARENT);
+                    edit5.setBackgroundColor(Color.TRANSPARENT);
+                    edit6.setBackgroundColor(Color.TRANSPARENT);
+                    edit7.setBackgroundColor(Color.TRANSPARENT);
+                    edit8.setBackgroundColor(Color.TRANSPARENT);
+                    rv1.getAdapter().notifyDataSetChanged();
 
                 }
             });
@@ -314,8 +326,9 @@ public class PerfilActivity extends AppCompatActivity {
         private class AdaptadorMascotasHolder extends RecyclerView.ViewHolder {
 
             EditText edit1t, edit2t, edit3t, edit4t, edit5t, edit6t, edit7t;
-            ImageView iv1t;
+
             Button b1t, b2t;
+            ImageButton ib1t;
 
             public AdaptadorMascotasHolder(@NonNull View itemView) {
                 super(itemView);
@@ -327,9 +340,11 @@ public class PerfilActivity extends AppCompatActivity {
                 edit5t = itemView.findViewById(R.id.item_edit5_mascotas_sexo);
                 edit6t = itemView.findViewById(R.id.item_edit6_mascotas_castrado);
                 edit7t = itemView.findViewById(R.id.item_edit7_mascotas_sociabilidad);
+                edit8t = itemView.findViewById(R.id.item_edit8_mascotas_imagen);
                 iv1t = itemView.findViewById(R.id.item_iv1_mascota);
                 b1t = itemView.findViewById(R.id.item_b1_mascotas_guardar);
                 b2t = itemView.findViewById(R.id.item_b2_mascotas_eliminar);
+                ib1t = itemView.findViewById(R.id.item_ib1_mascotas_subir);
             }
 
             @SuppressLint("ResourceType")
@@ -339,13 +354,13 @@ public class PerfilActivity extends AppCompatActivity {
                 iv1t.setImageBitmap(bitmap);
 
                 // Establecer valores de texto
-                edit1t.setText("Nombre: "+nombre[position]);
-                edit2t.setText("Tipo: "+tipo[position]);
-                edit3t.setText("Edad: "+edad[position]);
-                edit4t.setText("Tamaño: "+tamanio[position]);
-                edit5t.setText("Sexo: "+sexo[position]);
-                edit6t.setText("Castrado: "+castrado[position]);
-                edit7t.setText("Sociabilidad: "+sociabilidad[position]);
+                edit1t.setText(nombre[position]);
+                edit2t.setText(tipo[position]);
+                edit3t.setText(edad[position]);
+                edit4t.setText(tamanio[position]);
+                edit5t.setText(sexo[position]);
+                edit6t.setText(castrado[position]);
+                edit7t.setText(sociabilidad[position]);
 
                 // Habilitar/deshabilitar la edición
                 boolean esEditable = edicionMascotaHabilitada;
@@ -356,6 +371,7 @@ public class PerfilActivity extends AppCompatActivity {
                 edit5t.setEnabled(esEditable);
                 edit6t.setEnabled(esEditable);
                 edit7t.setEnabled(esEditable);
+                edit8t.setVisibility(View.GONE);
 
                 // Cambiar el color de fondo solo si la edición está habilitada
                 if (esEditable) {
@@ -377,7 +393,59 @@ public class PerfilActivity extends AppCompatActivity {
                 }
 
                 // Mostrar/ocultar los botones
+                ib1t.setVisibility(esEditable? View.VISIBLE : View.INVISIBLE);
+                if (esEditable){
+                    ib1t.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            startActivityForResult(intent, PICK_IMAGEN);
+                        }
+                    });
+                }
                 b1t.setVisibility(esEditable ? View.VISIBLE : View.INVISIBLE);
+                if (esEditable) {
+                    b1t.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            String nombre = edit1t.getText().toString();
+                            String tipo = edit2t.getText().toString();
+                            String edad = edit3t.getText().toString();
+                            String tamanio = edit4t.getText().toString();
+                            String sexo = edit5t.getText().toString();
+                            String castrado = edit6t.getText().toString();
+                            String sociabilidad = edit7t.getText().toString();
+                            byte[] imagen = (byte[]) edit8t.getTag();
+
+                            if (nombre.isEmpty()||tipo.isEmpty()||edad.isEmpty()||tamanio.isEmpty()||sexo.isEmpty()||castrado.isEmpty()||sociabilidad.isEmpty()){
+                                Toast.makeText(PerfilActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
+                                return;
+                            }else if(imagen == null ||imagen.length ==0) {
+                                boolean esActualizable = gbd.actualizarMascota(extra.getInt("ID"), nombre, tipo, edad, tamanio, sexo, castrado, sociabilidad, imagenes[position]);
+
+
+                                if (esActualizable){
+                                    Toast.makeText(PerfilActivity.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(PerfilActivity.this, "Ocurrio algun error inesperado", Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                boolean esActualizable = gbd.actualizarMascota(extra.getInt("ID"), nombre, tipo, edad, tamanio, sexo, castrado, sociabilidad, imagen);
+
+                                if (esActualizable){
+                                    Toast.makeText(PerfilActivity.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(PerfilActivity.this, "Ocurrio algun error inesperado", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            edicionMascotaHabilitada = !edicionMascotaHabilitada;
+                            Log.d("PerfilActivity", "Edición habilitada: " + edicionMascotaHabilitada); // Verifica el estado
+                            rv1.getAdapter().notifyDataSetChanged();
+
+                        }
+                    });
+                }
                 b2t.setVisibility(esEditable? View.VISIBLE : View.INVISIBLE);
 
                 // Hacer que el ImageView sea clickeable solo cuando la edición está habilitada
@@ -405,6 +473,32 @@ public class PerfilActivity extends AppCompatActivity {
 
                     // Guarda la imagen como un Tag en el EditText (como ya hacías)
                     edit9.setTag(imageBytes);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Error al procesar la imagen seleccionada", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "No se seleccionó una imagen válida", Toast.LENGTH_SHORT).show();
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Selección de imagen cancelada", Toast.LENGTH_SHORT).show();
+        }
+
+        if (requestCode == PICK_IMAGEN && resultCode == RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();
+            if (selectedImage != null) {
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
+                    byte[] imageBytes = stream.toByteArray();
+
+                    // Establece el Bitmap en el ImageView
+                    iv1t.setImageBitmap(bitmap);
+
+                    // Guarda la imagen como un Tag en el EditText (como ya hacías)
+                    edit8t.setTag(imageBytes);
 
                 } catch (Exception e) {
                     e.printStackTrace();

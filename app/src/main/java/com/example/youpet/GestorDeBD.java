@@ -160,7 +160,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
     }
 
 
-    public boolean actualizarMascota(int id, String nombre, String tipo, String edad, String tamanio, String sexo, String castrado, String sociabilidad,byte[] imagen) {
+    public boolean actualizarMascota(int id, String nombre, String tipo, String fecha, String tamano, String sexo, String castrado, String sociabilidad,byte[] imagen) {
         // Abrimos la base de datos en modo escritura
         db = this.getWritableDatabase();
 
@@ -168,8 +168,8 @@ public class GestorDeBD extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("nombre", nombre);
         values.put("tipo", tipo);
-        values.put("edad", edad);
-        values.put("tamanio", tamanio);
+        values.put("fecha", fecha);
+        values.put("tamano", tamano);
         values.put("sexo", sexo);
         values.put("castrado", castrado);
         values.put("sociabilidad", sociabilidad);
@@ -177,18 +177,10 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
 
         // Actualizamos el registro en la tabla "mascotas" donde el ID coincida con el que nos pasaron
-        int filasAfectadas = db.update("mascotas", values, "id = ?", new String[]{String.valueOf(id)});
+        int filasAfectadas = db.update("mascota", values, "id = ?", new String[]{String.valueOf(id)});
         return filasAfectadas > 0; // Retorna true si se actualizó al menos una fila
 
     }
-
-
-
-
-
-
-
-
     public boolean autenticarUsuario(String email, String contrasenia) {
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE email = ? AND contrasenia = ?", new String[]{email, contrasenia});
