@@ -48,6 +48,7 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pasar = new Intent(PrincipalActivity.this,CrearEventoActivity.class);
+                pasar.putExtra("ID",extras.getInt("ID"));
                 startActivity(pasar);
 
             }

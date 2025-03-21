@@ -87,7 +87,7 @@ public class PerfilActivity extends AppCompatActivity {
         edit8 = findViewById(R.id.edit8_perfil_provincia);
         edit9 = findViewById(R.id.edit9_perfil_imagen);
 
-        //metodo que inabilita los EditText
+        //metodo que inhabilita los EditText
         desabilitarEdicion();
 
         //recogemos datos de otras pantallas
@@ -339,13 +339,13 @@ public class PerfilActivity extends AppCompatActivity {
                 iv1t.setImageBitmap(bitmap);
 
                 // Establecer valores de texto
-                edit1t.setText(nombre[position]);
-                edit2t.setText(tipo[position]);
-                edit3t.setText(edad[position]);
-                edit4t.setText(tamanio[position]);
-                edit5t.setText(sexo[position]);
-                edit6t.setText(castrado[position]);
-                edit7t.setText(sociabilidad[position]);
+                edit1t.setText("Nombre: "+nombre[position]);
+                edit2t.setText("Tipo: "+tipo[position]);
+                edit3t.setText("Edad: "+edad[position]);
+                edit4t.setText("Tamaño: "+tamanio[position]);
+                edit5t.setText("Sexo: "+sexo[position]);
+                edit6t.setText("Castrado: "+castrado[position]);
+                edit7t.setText("Sociabilidad: "+sociabilidad[position]);
 
                 // Habilitar/deshabilitar la edición
                 boolean esEditable = edicionMascotaHabilitada;
