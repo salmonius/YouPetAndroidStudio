@@ -35,9 +35,9 @@ public class PerfilActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private static final int PICK_IMAGEN = 2;
     protected RecyclerView rv1,rv2;
-    protected ImageButton ib1,ib2,ib3,ib4,ib5;
+    protected ImageButton ib1,ib2,ib3,ib4,ib5,ib6,ib7;
     protected Button b1,b2;
-    protected ImageView iv1,iv1t;
+    protected ImageView iv1,iv1t,iv1e;
     protected TextView tv1;
     protected EditText edit1,edit2,edit3,edit4,edit5,edit6,edit7,edit8,edit9,edit8t;
     protected Intent atras;
@@ -46,12 +46,16 @@ public class PerfilActivity extends AppCompatActivity {
     protected Usuario u1;
     protected GestorDeBD gbd;
     protected List<Mascota> listaMascota;
-    protected int[] id,usuarioId;
-    protected String[] nombre,tipo,edad,tamanio,sexo,castrado,sociabilidad;
+    protected List<Evento> listaEvento;
+
+    protected int[] id,usuarioId,idE,usarioIdE;
+    protected String[] nombre,nombreE,tipo,edad,tamanio,sexo,castrado,sociabilidad,descripcion,fechaE,hora,ubicacion;
     protected byte[][] imagenes;
     protected Mascota m1;
+    protected Evento e1;
     protected boolean edicionMascotaHabilitada = false;
     protected boolean edicionUsuarioHabilitada = false;
+    protected boolean edicionEventoHabilitada = false;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -74,6 +78,8 @@ public class PerfilActivity extends AppCompatActivity {
         ib3 = findViewById(R.id.ib3_perfil_editar_datos_usuario);
         ib4 = findViewById(R.id.ib4_perfil_editar_datos_mascota);
         ib5 = findViewById(R.id.ib5_perfil_aniadir);
+        ib6 = findViewById(R.id.ib6_perfil_editar_datos_eventos);
+        ib7 = findViewById(R.id.ib7_perfil_aniadir);
         b1 = findViewById(R.id.b1_perfil_guardar);
         b2 = findViewById(R.id.b2_perfil_eliminar);
         iv1 = findViewById(R.id.iv1_perfil);
@@ -134,6 +140,10 @@ public class PerfilActivity extends AppCompatActivity {
         rv1.setLayoutManager(llm);
         rv1.setAdapter(new AdaptadorMascotas());
 
+        LinearLayoutManager llm2 = new LinearLayoutManager(this);
+        rv2.setLayoutManager(llm2);
+        rv2.setAdapter(new AdaptadorEventos());
+
         //recuperamos los datos de las mascotas de un Usuario por su ID
         listaMascota = gbd.recuperarMascotasPorUsuario(extra.getInt("ID"));
         //inicializamos los Arrays necesarios para los RecyclerView
@@ -147,6 +157,16 @@ public class PerfilActivity extends AppCompatActivity {
         castrado = new String[listaMascota.size()];
         sociabilidad = new String[listaMascota.size()];
         imagenes = new byte[listaMascota.size()][];
+
+        listaEvento = gbd.recuperarEventosPorUsuario(extra.getInt("ID"));
+
+        idE = new int[listaEvento.size()];
+        usarioIdE = new int[listaEvento.size()];
+        nombreE = new String[listaEvento.size()];
+        descripcion = new String[listaEvento.size()];
+        fechaE = new String[listaEvento.size()];
+        hora = new String[listaEvento.size()];
+        ubicacion= new String[listaEvento.size()];
 
         //rellenamos con un bucle for los Arrays
         for (int i = 0; i < listaMascota.size(); i++) {
@@ -163,6 +183,18 @@ public class PerfilActivity extends AppCompatActivity {
             castrado[i] = m1.getCastrado();
             sociabilidad[i] = m1.getSociabilidad();
             imagenes[i] = m1.getImagen();
+        }
+
+        for (int i=0;i< listaEvento.size();i++){
+            e1 = listaEvento.get(i);
+
+            idE[i] = e1.getId();
+            usuarioId[i] = e1.getUsuarioId();
+            nombreE[i] = e1.getNombre();
+            descripcion[i] = e1.getDescripcion();
+            fechaE[i] = e1.getFecha();
+            hora[i] = e1.getHora();
+            ubicacion[i] = e1.getUbicacion();
         }
 
         //ImagenButton para ir hacia atras
@@ -285,6 +317,12 @@ public class PerfilActivity extends AppCompatActivity {
             edicionMascotaHabilitada = !edicionMascotaHabilitada;
             Log.d("PerfilActivity", "Edición habilitada: " + edicionMascotaHabilitada); // Verifica el estado
             rv1.getAdapter().notifyDataSetChanged();
+        });
+
+        ib6.setOnClickListener(v -> {
+            edicionEventoHabilitada = !edicionEventoHabilitada;
+            Log.d("PerfilActivity", "Edición habilitada: " + edicionEventoHabilitada); // Verifica el estado
+            rv2.getAdapter().notifyDataSetChanged();
         });
 
 
@@ -447,6 +485,124 @@ public class PerfilActivity extends AppCompatActivity {
                     });
                 }
                 b2t.setVisibility(esEditable? View.VISIBLE : View.INVISIBLE);
+
+                // Hacer que el ImageView sea clickeable solo cuando la edición está habilitada
+                iv1t.setClickable(esEditable);
+                iv1t.setEnabled(esEditable);
+            }
+
+        }
+    }
+
+    private class AdaptadorEventos extends RecyclerView.Adapter<AdaptadorEventos.AdaptadorEventosHolder> {
+
+        @NonNull
+        @Override
+        public AdaptadorEventosHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new AdaptadorEventosHolder(getLayoutInflater().inflate(R.layout.item_perfil_eventos, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull AdaptadorEventosHolder holder, int position) {
+            holder.imprimir(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return listaEvento.size();
+        }
+
+        private class AdaptadorEventosHolder extends RecyclerView.ViewHolder {
+
+            EditText edit1e, edit2e, edit3e, edit4e, edit5e;
+
+            Button b1e, b2e;
+
+            public AdaptadorEventosHolder(@NonNull View itemView) {
+                super(itemView);
+
+                edit1e = itemView.findViewById(R.id.item_edit1_eventos_usuario);
+                edit2e = itemView.findViewById(R.id.item_edit2_eventos_mascota);
+                edit3e = itemView.findViewById(R.id.item_edit3_eventos_fecha);
+                edit4e = itemView.findViewById(R.id.item_edit4_eventos_hora);
+                edit5e = itemView.findViewById(R.id.item_edit5_eventos_ubicacion);
+                iv1e = itemView.findViewById(R.id.item_iv1_evento);
+                b1e = itemView.findViewById(R.id.item_b1_eventos_guardar);
+                b2e = itemView.findViewById(R.id.item_b2_eventos_eliminar);
+            }
+
+            @SuppressLint("ResourceType")
+            public void imprimir(int position) {
+                // Configuración de la imagen de la mascota
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imagenes[position], 0, imagenes[position].length);
+                iv1e.setImageBitmap(bitmap);
+
+                // Establecer valores de texto
+                edit1e.setText(nombreE[position]);
+                edit2e.setText(nombre[position]);
+                edit3e.setText(fechaE[position]);
+                edit4e.setText(hora[position]);
+                edit5e.setText(ubicacion[position]);
+
+
+                // Habilitar/deshabilitar la edición
+                boolean esEditable = edicionEventoHabilitada;
+                edit1e.setEnabled(esEditable);
+                edit2e.setEnabled(esEditable);
+                edit3e.setEnabled(esEditable);
+                edit4e.setEnabled(esEditable);
+                edit5e.setEnabled(esEditable);
+
+                // Cambiar el color de fondo solo si la edición está habilitada
+                if (esEditable) {
+                    edit1e.setBackgroundColor(Color.WHITE);
+                    edit2e.setBackgroundColor(Color.WHITE);
+                    edit3e.setBackgroundColor(Color.WHITE);
+                    edit4e.setBackgroundColor(Color.WHITE);
+                    edit5e.setBackgroundColor(Color.WHITE);
+                }else{
+                    edit1e.setBackgroundColor(Color.TRANSPARENT);
+                    edit2e.setBackgroundColor(Color.TRANSPARENT);
+                    edit3e.setBackgroundColor(Color.TRANSPARENT);
+                    edit4e.setBackgroundColor(Color.TRANSPARENT);
+                    edit5e.setBackgroundColor(Color.TRANSPARENT);
+                }
+
+                // Mostrar/ocultar los botones
+                b1e.setVisibility(esEditable ? View.VISIBLE : View.INVISIBLE);
+                if (esEditable) {
+                    b1e.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            String nombre = edit1e.getText().toString();
+                            String nombreM = edit2e.getText().toString();
+                            String fechaE = edit3e.getText().toString();
+                            String hora = edit4e.getText().toString();
+                            String ubicacion = edit5e.getText().toString();
+
+
+                            if (nombre.isEmpty()||nombreM.isEmpty()||fechaE.isEmpty()||hora.isEmpty()||ubicacion.isEmpty()){
+                                Toast.makeText(PerfilActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
+                                return;
+                            }else{
+                                boolean esActualizable = gbd.actualizarEvento(extra.getInt("ID"), nombre, e1.getDescripcion(), fechaE, hora, ubicacion);
+
+
+                                if (esActualizable){
+                                    Toast.makeText(PerfilActivity.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(PerfilActivity.this, "Ocurrio algun error inesperado", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            edicionEventoHabilitada = !edicionEventoHabilitada;
+                            Log.d("PerfilActivity", "Edición habilitada: " + edicionEventoHabilitada); // Verifica el estado
+                            rv1.getAdapter().notifyDataSetChanged();
+
+                        }
+                    });
+                }
+                b2e.setVisibility(esEditable? View.VISIBLE : View.INVISIBLE);
 
                 // Hacer que el ImageView sea clickeable solo cuando la edición está habilitada
                 iv1t.setClickable(esEditable);

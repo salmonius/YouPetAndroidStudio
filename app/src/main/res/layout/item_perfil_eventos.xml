@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="140dp"
+    android:layout_width="match_parent"
+    android:layout_height="282dp"
     android:background="#A7F2E8">
 
     <ImageView
@@ -14,15 +14,87 @@
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="154dp"
+        android:layout_height="281dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_tv1_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/merienda_one"
+            android:gravity="center"
+            android:text="Nombre:"
+            android:textColor="#090909"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_tv2_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/merienda_one"
+            android:gravity="center"
+            android:text="Mascota:"
+            android:textColor="#090909"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_tv3_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/merienda_one"
+            android:gravity="center"
+            android:text="Fecha:"
+            android:textColor="#090909"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_tv4_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/merienda_one"
+            android:gravity="center"
+            android:text="Hora:"
+            android:textColor="#090909"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_tv5_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/merienda_one"
+            android:gravity="center"
+            android:text="Ubicación:"
+            android:textColor="#090909"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/item_b1_eventos_guardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#090909"
+            android:fontFamily="@font/merienda_one"
+            android:text="+guardar"
+            android:textColor="#02FFC1"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="281dp"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/item_edit1_eventos_usuario"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="NombreU"
@@ -30,9 +102,9 @@
 
         <EditText
             android:id="@+id/item_edit2_eventos_mascota"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="NombreM"
@@ -40,26 +112,19 @@
 
         <EditText
             android:id="@+id/item_edit3_eventos_fecha"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Fecha"
             android:textColor="#050505" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
         <EditText
             android:id="@+id/item_edit4_eventos_hora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Hora"
@@ -67,44 +132,24 @@
 
         <EditText
             android:id="@+id/item_edit5_eventos_ubicacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#A7F2E8"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
             android:text="Ubicación"
             android:textColor="#0B0B0B" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <Button
+            android:id="@+id/item_b2_eventos_eliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FB0E0E"
+            android:fontFamily="@font/merienda_one"
+            android:text="Eliminar"
+            android:textColor="#050505"
+            android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/item_b1_eventos_guardar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#090909"
-                android:fontFamily="@font/merienda_one"
-                android:text="+guardar"
-                android:textColor="#02FFC1"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/item_b2_eventos_eliminar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FB0E0E"
-                android:fontFamily="@font/merienda_one"
-                android:text="Eliminar"
-                android:textColor="#050505"
-                android:textSize="12sp" />
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

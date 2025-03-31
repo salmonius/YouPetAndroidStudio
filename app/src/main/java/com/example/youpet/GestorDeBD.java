@@ -181,6 +181,22 @@ public class GestorDeBD extends SQLiteOpenHelper {
         return filasAfectadas > 0; // Retorna true si se actualizó al menos una fila
 
     }
+    public boolean actualizarEvento(int id,String nombre,String descripcion,String fecha,String hora,String ubicacion){
+        db = this.getWritableDatabase();
+
+        // Usamos ContentValues para pasar los valores
+        ContentValues values = new ContentValues();
+        values.put("usuarioId", id);
+        values.put("nombre", nombre);
+        values.put("descripcion", descripcion);
+        values.put("fecha", fecha);
+        values.put("hora", hora);
+        values.put("ubicacion", ubicacion);
+
+        // Inserción de datos en la tabla usuario
+        int filasAfectadas =  db.update("evento", values,"id = ?", new String[]{String.valueOf(id)});
+        return filasAfectadas > 0;
+    }
     public boolean autenticarUsuario(String email, String contrasenia) {
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE email = ? AND contrasenia = ?", new String[]{email, contrasenia});
@@ -220,7 +236,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     public List<Mascota> recuperarMascotasPorUsuario(int idU) {
         db = this.getReadableDatabase();
-        List<Mascota> listaMascotas = new ArrayList<>();
+        List<Mascota> listaMascotas = new ArrayList<Mascota>();
 
         // Usa una consulta parametrizada para obtener todas las mascotas de un usuario específico
         Cursor cursor = db.rawQuery("SELECT * FROM mascota WHERE usuarioId = ?", new String[]{String.valueOf(idU)});
@@ -247,6 +263,35 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
         cursor.close(); // Siempre cierra el cursor para liberar recursos
         return listaMascotas; // Devuelve la lista de mascotas para el usuario con idU (vacía si no se encuentra ninguna)
+    }
+
+    public List<Evento> recuperarEventosPorUsuario(int idU) {
+        db = this.getReadableDatabase();
+        List<Evento> listaEventos = new ArrayList<Evento>();
+
+        // Usa una consulta parametrizada para obtener todas las mascotas de un usuario específico
+        Cursor cursor = db.rawQuery("SELECT * FROM evento WHERE usuarioId = ?", new String[]{String.valueOf(idU)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Extrae los datos del cursor y crea el objeto Mascota
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                int usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow("usuarioId"));
+                String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
+                String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
+                String hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"));
+                String ubicacion = cursor.getString(cursor.getColumnIndexOrThrow("ubicacion"));
+
+
+                // Crea el objeto Mascota y añádelo a la lista
+                Evento evento = new Evento(id,usuarioId,nombre,descripcion,fecha,hora,ubicacion);
+                listaEventos.add(evento);
+            } while (cursor.moveToNext()); // Continúa mientras haya más filas
+        }
+
+        cursor.close(); // Siempre cierra el cursor para liberar recursos
+        return listaEventos; // Devuelve la lista de eventos para el usuario con idU (vacía si no se encuentra ninguna)
     }
 
 
