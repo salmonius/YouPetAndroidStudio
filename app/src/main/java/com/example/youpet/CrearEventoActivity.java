@@ -104,6 +104,7 @@ public class CrearEventoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 atras = new Intent(CrearEventoActivity.this,PrincipalActivity.class);
+                atras.putExtra("ID",extras.getInt("ID"));
                 startActivity(atras);
 
             }

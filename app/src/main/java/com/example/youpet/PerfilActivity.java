@@ -200,6 +200,9 @@ public class PerfilActivity extends AppCompatActivity {
         //ImagenButton para ir hacia atras
         ib1.setOnClickListener(v -> {
             atras = new Intent(PerfilActivity.this, PrincipalActivity.class);
+            atras.putExtra("ID",extra.getInt("ID"));
+            atras.putExtra("EMAIL",extra.getString("EMAIL"));
+            atras.putExtra("PASS",extra.getString("PASS"));
             startActivity(atras);
 
         });
@@ -249,6 +252,26 @@ public class PerfilActivity extends AppCompatActivity {
                 b2.setVisibility(View.INVISIBLE);
                 ib2.setVisibility(View.INVISIBLE);
 
+            }
+        });
+
+        ib5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atras = new Intent(PerfilActivity.this, CrearCuentaMascotasActivity.class);
+                atras.putExtra("ID",extra.getInt("ID"));
+                atras.putExtra("EMAIL",extra.getString("EMAIL"));
+                atras.putExtra("PASS",extra.getString("PASS"));
+                startActivity(atras);
+            }
+        });
+
+        ib7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atras = new Intent(PerfilActivity.this, CrearEventoActivity.class);
+                atras.putExtra("ID",extra.getInt("ID"));
+                startActivity(atras);
             }
         });
 
@@ -539,7 +562,7 @@ public class PerfilActivity extends AppCompatActivity {
 
                 // Establecer valores de texto
                 edit1e.setText(nombreE[position]);
-                edit2e.setText(nombre[position]);
+                edit2e.setText(descripcion[position]);
                 edit3e.setText(fechaE[position]);
                 edit4e.setText(hora[position]);
                 edit5e.setText(ubicacion[position]);
@@ -576,17 +599,17 @@ public class PerfilActivity extends AppCompatActivity {
                         public void onClick(View v) {
 
                             String nombre = edit1e.getText().toString();
-                            String nombreM = edit2e.getText().toString();
+                            String descripcion = edit2e.getText().toString();
                             String fechaE = edit3e.getText().toString();
                             String hora = edit4e.getText().toString();
                             String ubicacion = edit5e.getText().toString();
 
 
-                            if (nombre.isEmpty()||nombreM.isEmpty()||fechaE.isEmpty()||hora.isEmpty()||ubicacion.isEmpty()){
+                            if (nombre.isEmpty()||descripcion.isEmpty()||fechaE.isEmpty()||hora.isEmpty()||ubicacion.isEmpty()){
                                 Toast.makeText(PerfilActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
                                 return;
                             }else{
-                                boolean esActualizable = gbd.actualizarEvento(extra.getInt("ID"), nombre, e1.getDescripcion(), fechaE, hora, ubicacion);
+                                boolean esActualizable = gbd.actualizarEvento(extra.getInt("ID"), nombre, descripcion, fechaE, hora, ubicacion);
 
 
                                 if (esActualizable){

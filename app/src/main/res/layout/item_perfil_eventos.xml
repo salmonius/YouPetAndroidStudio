@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="282dp"
+    android:layout_height="350dp"
     android:background="#A7F2E8">
 
     <ImageView
@@ -15,7 +15,7 @@
 
     <LinearLayout
         android:layout_width="154dp"
-        android:layout_height="281dp"
+        android:layout_height="350dp"
         android:orientation="vertical">
 
         <TextView
@@ -32,10 +32,10 @@
         <TextView
             android:id="@+id/item_tv2_eventos"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="100dp"
             android:fontFamily="@font/merienda_one"
             android:gravity="center"
-            android:text="Mascota:"
+            android:text="Descripción:"
             android:textColor="#090909"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -87,7 +87,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="281dp"
+        android:layout_height="350dp"
         android:orientation="vertical">
 
         <EditText
@@ -103,11 +103,11 @@
         <EditText
             android:id="@+id/item_edit2_eventos_mascota"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="100dp"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
-            android:text="NombreM"
+            android:text="descripcion"
             android:textColor="#040404" />
 
         <EditText

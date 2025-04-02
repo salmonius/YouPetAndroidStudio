@@ -295,6 +295,27 @@ public class GestorDeBD extends SQLiteOpenHelper {
     }
 
 
+    public List<Noticia> recuperarAllNoticias(){
+        List<Noticia> listaNoticias = new ArrayList<Noticia>();
+        db = this.getReadableDatabase();
+
+        Cursor cur = db.rawQuery("SELECT * FROM noticia ORDER BY fecha_hora DESC",null);
+
+        cur.moveToFirst();
+        while(!cur.isAfterLast()){
+            int id = cur.getInt(cur.getColumnIndexOrThrow("id"));
+            int usuarioId = cur.getInt(cur.getColumnIndexOrThrow("usuarioId"));
+            String fecha = cur.getString(cur.getColumnIndexOrThrow("fecha_hora"));
+            String titulo = cur.getString(cur.getColumnIndexOrThrow("titulo"));
+            String descripcion = cur.getString(cur.getColumnIndexOrThrow("descripcion"));
+
+            Noticia noticia = new Noticia(id,usuarioId,fecha,titulo,descripcion);
+            listaNoticias.add(noticia);
+
+            cur.moveToNext();
+        }
+        return listaNoticias;
+    }
 
 
 
