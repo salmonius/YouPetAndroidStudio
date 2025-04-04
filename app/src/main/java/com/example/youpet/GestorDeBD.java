@@ -67,7 +67,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
     }
 
     //Insertar mascota
-    public void insertarMascotas(int usuarioId,String nombre,String tipo,String fecha,String tamano,String sexo,String castrado,String sociabilidad,byte[] imagen){
+    public void insertarMascotas(int usuarioId, String nombre, String tipo, String fecha, String tamano, String sexo, String castrado, String sociabilidad, byte[] imagen) {
         db = this.getWritableDatabase();
 
         // Usamos ContentValues para pasar los valores
@@ -93,8 +93,9 @@ public class GestorDeBD extends SQLiteOpenHelper {
             Log.d("DB_SUCCESS", "Mascota insertada con éxito, ID: " + resultado);
         }
     }
+
     //Insertar evento
-    public void insertarEvento(int usuarioId,String nombre,String descripcion,String fecha,String hora,String ubicacion){
+    public void insertarEvento(int usuarioId, String nombre, String descripcion, String fecha, String hora, String ubicacion) {
         db = this.getWritableDatabase();
 
         // Usamos ContentValues para pasar los valores
@@ -117,7 +118,8 @@ public class GestorDeBD extends SQLiteOpenHelper {
             Log.d("DB_SUCCESS", "Evento insertado con éxito, ID: " + resultado);
         }
     }
-    public void insertarNoticia(int usuarioId, String fecha_hora, String titulo, String descripcion){
+
+    public void insertarNoticia(int usuarioId, String fecha_hora, String titulo, String descripcion) {
         db = this.getWritableDatabase();
 
 
@@ -140,7 +142,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
         }
     }
 
-    public boolean actualizarUsuario(int id, String nombre, String apellidos, String telefono, String email, String fechaNacimiento, String direccion, String poblacion, String provincia,String contrasenia, byte[] imagen) {
+    public boolean actualizarUsuario(int id, String nombre, String apellidos, String telefono, String email, String fechaNacimiento, String direccion, String poblacion, String provincia, String contrasenia, byte[] imagen) {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -160,7 +162,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
     }
 
 
-    public boolean actualizarMascota(int id, String nombre, String tipo, String fecha, String tamano, String sexo, String castrado, String sociabilidad,byte[] imagen) {
+    public boolean actualizarMascota(int id, String nombre, String tipo, String fecha, String tamano, String sexo, String castrado, String sociabilidad, byte[] imagen) {
         // Abrimos la base de datos en modo escritura
         db = this.getWritableDatabase();
 
@@ -181,7 +183,8 @@ public class GestorDeBD extends SQLiteOpenHelper {
         return filasAfectadas > 0; // Retorna true si se actualizó al menos una fila
 
     }
-    public boolean actualizarEvento(int id,String nombre,String descripcion,String fecha,String hora,String ubicacion){
+
+    public boolean actualizarEvento(int id, String nombre, String descripcion, String fecha, String hora, String ubicacion) {
         db = this.getWritableDatabase();
 
         // Usamos ContentValues para pasar los valores
@@ -194,9 +197,10 @@ public class GestorDeBD extends SQLiteOpenHelper {
         values.put("ubicacion", ubicacion);
 
         // Inserción de datos en la tabla usuario
-        int filasAfectadas =  db.update("evento", values,"id = ?", new String[]{String.valueOf(id)});
+        int filasAfectadas = db.update("evento", values, "id = ?", new String[]{String.valueOf(id)});
         return filasAfectadas > 0;
     }
+
     public boolean autenticarUsuario(String email, String contrasenia) {
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE email = ? AND contrasenia = ?", new String[]{email, contrasenia});
@@ -205,6 +209,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
         cursor.close();
         return autenticado;
     }
+
     public Usuario usuarioConectado(String email, String contrasenia) {
         db = this.getReadableDatabase();
         Usuario usuario = null;
@@ -285,7 +290,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
 
                 // Crea el objeto Mascota y añádelo a la lista
-                Evento evento = new Evento(id,usuarioId,nombre,descripcion,fecha,hora,ubicacion);
+                Evento evento = new Evento(id, usuarioId, nombre, descripcion, fecha, hora, ubicacion);
                 listaEventos.add(evento);
             } while (cursor.moveToNext()); // Continúa mientras haya más filas
         }
@@ -295,21 +300,21 @@ public class GestorDeBD extends SQLiteOpenHelper {
     }
 
 
-    public List<Noticia> recuperarAllNoticias(){
+    public List<Noticia> recuperarAllNoticias() {
         List<Noticia> listaNoticias = new ArrayList<Noticia>();
         db = this.getReadableDatabase();
 
-        Cursor cur = db.rawQuery("SELECT * FROM noticia ORDER BY fecha_hora DESC",null);
+        Cursor cur = db.rawQuery("SELECT * FROM noticia ORDER BY fecha_hora DESC", null);
 
         cur.moveToFirst();
-        while(!cur.isAfterLast()){
+        while (!cur.isAfterLast()) {
             int id = cur.getInt(cur.getColumnIndexOrThrow("id"));
             int usuarioId = cur.getInt(cur.getColumnIndexOrThrow("usuarioId"));
             String fecha = cur.getString(cur.getColumnIndexOrThrow("fecha_hora"));
             String titulo = cur.getString(cur.getColumnIndexOrThrow("titulo"));
             String descripcion = cur.getString(cur.getColumnIndexOrThrow("descripcion"));
 
-            Noticia noticia = new Noticia(id,usuarioId,fecha,titulo,descripcion);
+            Noticia noticia = new Noticia(id, usuarioId, fecha, titulo, descripcion);
             listaNoticias.add(noticia);
 
             cur.moveToNext();
@@ -317,6 +322,49 @@ public class GestorDeBD extends SQLiteOpenHelper {
         return listaNoticias;
     }
 
+    public List<String> getTodosEventos() {
+        List<String> lista = new ArrayList<String>();
+        db = this.getReadableDatabase();
+
+        Cursor cur = db.rawQuery("SELECT u.nombre,e.id,e.nombre,e.ubicacion,e.fecha FROM usuario u JOIN evento e ON u.id = e.usuarioId  ORDER BY e.fecha DESC LIMIT 5", null);
+
+        cur.moveToFirst();
+        while (!cur.isAfterLast()) {
+            lista.add(cur.getString(0)); // u.nombre
+            lista.add(String.valueOf(cur.getInt(1))); // e.id (convertir a String)
+            lista.add(cur.getString(2)); // e.nombre
+            lista.add(cur.getString(3)); // e.ubicacion
+            lista.add(cur.getString(4)); // e.fecha
+
+
+            cur.moveToNext();
+        }
+        return lista;
+    }
+
+    public Evento getEvento(int id) {
+        Evento e1 = null;
+        Cursor cursor = db.rawQuery("SELECT * FROM evento WHERE id = ?", new String[]{String.valueOf(id)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Extrae los datos del cursor y crea el objeto Evento
+                int ide = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                int usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow("usuarioId"));
+                String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
+                String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
+                String hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"));
+                String ubicacion = cursor.getString(cursor.getColumnIndexOrThrow("ubicacion"));
+
+
+                // Crea el objeto Evento
+                e1 = new Evento(ide, usuarioId, nombre, descripcion, fecha, hora, ubicacion);
+            } while (cursor.moveToNext()); // Continúa mientras haya más filas
+
+        }
+        return e1;
+    }
 
 
 }

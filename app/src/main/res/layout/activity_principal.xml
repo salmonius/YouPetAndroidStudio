@@ -55,8 +55,8 @@
 
     <TableLayout
         android:id="@+id/tabla_eventos"
-        android:layout_width="363dp"
-        android:layout_height="199dp"
+        android:layout_width="367dp"
+        android:layout_height="235dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="24dp"
@@ -65,16 +65,17 @@
         android:baselineAligned="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toEndOf="@+id/tv4_principal_invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="38dp">
 
             <TextView
                 android:id="@+id/tv2_principal_creador"
-                android:layout_width="wrap_content"
+                android:layout_width="98dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
@@ -96,7 +97,7 @@
 
             <TextView
                 android:id="@+id/tv2_principal_lugar"
-                android:layout_width="wrap_content"
+                android:layout_width="79dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
@@ -107,7 +108,7 @@
 
             <TextView
                 android:id="@+id/tv2_principal_fecha"
-                android:layout_width="wrap_content"
+                android:layout_width="79dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
@@ -118,7 +119,7 @@
 
             <TextView
                 android:id="@+id/textView23"
-                android:layout_width="wrap_content"
+                android:layout_width="76dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
@@ -138,15 +139,17 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv3_principal_nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="58dp"
+                android:layout_height="35dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -156,6 +159,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -165,10 +169,11 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/b2_principal_eventos"
+                android:id="@+id/b2_principal_info"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
@@ -193,15 +198,17 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv4_principal_nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -211,6 +218,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -220,10 +228,11 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/b3_principal_eventos"
+                android:id="@+id/b3_principal_info"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
@@ -248,15 +257,17 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv5_principal_nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="59dp"
+                android:layout_height="35dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -266,6 +277,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -275,10 +287,11 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/b4_principal_eventos"
+                android:id="@+id/b4_principal_info"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
@@ -303,15 +316,17 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv6_principal_nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="58dp"
+                android:layout_height="35dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -321,6 +336,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -330,10 +346,11 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/b5_principal_eventos"
+                android:id="@+id/b5_principal_info"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
@@ -358,15 +375,17 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv7_principal_nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="59dp"
+                android:layout_height="35dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -376,6 +395,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <TextView
@@ -385,10 +405,11 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/merienda_one"
                 android:text="Datos"
+                android:textColor="#070707"
                 android:textSize="10sp" />
 
             <Button
-                android:id="@+id/b6_principal_eventos"
+                android:id="@+id/b6_principal_info"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
@@ -404,7 +425,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="17dp">
 
             <Button
                 android:id="@+id/b7_principal_ver_mas"
@@ -485,5 +506,49 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lv1_principal" />
+
+    <TextView
+        android:id="@+id/tv3_principal_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/tabla_eventos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tabla_eventos" />
+
+    <TextView
+        android:id="@+id/tv4_principal_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/tabla_eventos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv3_principal_invisible" />
+
+    <TextView
+        android:id="@+id/tv5_principal_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv4_principal_invisible" />
+
+    <TextView
+        android:id="@+id/tv6_principal_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv5_principal_invisible" />
+
+    <TextView
+        android:id="@+id/tv7_principal_invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabla_eventos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

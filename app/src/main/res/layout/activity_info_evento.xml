@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv1_info_evento" />
 
     <TextView
-        android:id="@+id/txt1Titulo_infoEvent"
+        android:id="@+id/tv1_info_evento_nombre"
         android:layout_width="389dp"
         android:layout_height="79dp"
         android:layout_marginStart="16dp"
@@ -107,7 +107,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt1Titulo_infoEvent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1_info_evento_nombre"
         app:srcCompat="@android:drawable/dialog_frame" />
 
     <TextView
