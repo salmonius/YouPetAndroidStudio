@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,9 @@ public class CrearEventoActivity extends AppCompatActivity {
     protected Bundle extras;
 
     protected int id = 0;
+    protected Spinner s1;
+    protected String[] itemSpinner ={"Campo","Playa","Domicilio","Pipicam","Paseo","Tienda de mascotas","Parque"};
+    protected ArrayAdapter<String> adaptador;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,7 +46,7 @@ public class CrearEventoActivity extends AppCompatActivity {
             return insets;
         });
         getSupportActionBar().hide();// esconde la barra de navegacion
-
+        gdb = new GestorDeBD(this);
 
         ib1 = findViewById(R.id.ib1_crear_evento_atras);
         tv1 = findViewById(R.id.tv1_crear_evento);
@@ -56,6 +61,7 @@ public class CrearEventoActivity extends AppCompatActivity {
         edit4 = findViewById(R.id.edit4_crear_evento_hora);
         edit5 = findViewById(R.id.edit5_crear_evento_ubicacion);
         b1 = findViewById(R.id.b1_crear_evento);
+        s1 = findViewById(R.id.s1_crear_evento);
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -64,7 +70,8 @@ public class CrearEventoActivity extends AppCompatActivity {
         }
         Toast.makeText(this, "id 1 : " +id, Toast.LENGTH_SHORT).show();
 
-        gdb = new GestorDeBD(this);
+        adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,itemSpinner);
+        s1.setAdapter(adaptador);
 
         //BOTON CREAR EVENTO
         b1.setOnClickListener(new View.OnClickListener() {
