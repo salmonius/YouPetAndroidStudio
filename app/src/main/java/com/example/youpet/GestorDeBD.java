@@ -1,5 +1,6 @@
 package com.example.youpet;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -274,33 +275,41 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     public List<Evento> recuperarEventosPorUsuario(int idU) {
         db = this.getReadableDatabase();
-        List<Evento> listaEventos = new ArrayList<Evento>();
+        List<Evento> listaEventos = new ArrayList<>();
 
-        // Usa una consulta parametrizada para obtener todas las mascotas de un usuario específico
-        Cursor cursor = db.rawQuery("SELECT * FROM evento WHERE usuarioId = ?", new String[]{String.valueOf(idU)});
+        // Usa una consulta parametrizada para obtener todos los eventos de un usuario específico
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT * FROM evento WHERE usuarioId = ?", new String[]{String.valueOf(idU)});
 
-        if (cursor.moveToFirst()) {
-            do {
-                // Extrae los datos del cursor y crea el objeto Mascota
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-                int usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow("usuarioId"));
-                String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
-                String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
-                String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
-                String hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"));
-                String ubicacion = cursor.getString(cursor.getColumnIndexOrThrow("ubicacion"));
-                String seleccion = cursor.getString(cursor.getColumnIndexOrThrow("seleccion"));
+            if (cursor.moveToFirst()) {
+                do {
+                    // Extrae los datos del cursor y crea el objeto Evento
+                    int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                    int usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow("usuarioId"));
+                    String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                    String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
+                    String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
+                    String hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"));
+                    String ubicacion = cursor.getString(cursor.getColumnIndexOrThrow("ubicacion"));
+                    String seleccion = cursor.getString(cursor.getColumnIndexOrThrow("seleccion"));
 
-
-                // Crea el objeto Mascota y añádelo a la lista
-                Evento evento = new Evento(id, usuarioId, nombre, descripcion, fecha, hora, ubicacion,seleccion);
-                listaEventos.add(evento);
-            } while (cursor.moveToNext()); // Continúa mientras haya más filas
+                    // Crea el objeto Evento y añádelo a la lista
+                    Evento evento = new Evento(id, usuarioId, nombre, descripcion, fecha, hora, ubicacion, seleccion);
+                    listaEventos.add(evento);
+                } while (cursor.moveToNext()); // Continúa mientras haya más filas
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close(); // Siempre cierra el cursor para liberar recursos
+            }
         }
 
-        cursor.close(); // Siempre cierra el cursor para liberar recursos
         return listaEventos; // Devuelve la lista de eventos para el usuario con idU (vacía si no se encuentra ninguna)
     }
+
 
 
     public List<Noticia> recuperarAllNoticias() {
@@ -347,6 +356,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     public Evento getEvento(int id) {
         Evento e1 = null;
+        db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM evento WHERE id = ?", new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
@@ -368,6 +378,36 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
         }
         return e1;
+    }
+
+    @SuppressLint("Recycle")
+    public List<Evento> getAllEvento() {
+        List<Evento> listaEvento = new ArrayList<Evento>();
+        Evento e1 = null;
+        db = this.getReadableDatabase();
+        Cursor cursor;
+        cursor = db.rawQuery("SELECT * FROM evento ", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Extrae los datos del cursor y crea el objeto Evento
+                int ide = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                int usuarioId = cursor.getInt(cursor.getColumnIndexOrThrow("usuarioId"));
+                String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
+                String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
+                String hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"));
+                String ubicacion = cursor.getString(cursor.getColumnIndexOrThrow("ubicacion"));
+                String seleccion = cursor.getString(cursor.getColumnIndexOrThrow("seleccion"));
+
+
+                // Crea el objeto Evento
+                e1 = new Evento(ide, usuarioId, nombre, descripcion, fecha, hora, ubicacion,seleccion);
+                listaEvento.add(e1);
+            } while (cursor.moveToNext()); // Continúa mientras haya más filas
+
+        }
+        return listaEvento;
     }
 
 

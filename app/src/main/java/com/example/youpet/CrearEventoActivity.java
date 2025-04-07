@@ -96,6 +96,11 @@ public class CrearEventoActivity extends AppCompatActivity {
                     if (id != 0) {
                         gdb.insertarEvento(id, nombre, descripcion, fecha, hora, ubicacion,seleccion);
                         Toast.makeText(CrearEventoActivity.this, "Evento creado exitosamente", Toast.LENGTH_SHORT).show();
+                        atras = new Intent(CrearEventoActivity.this, PrincipalActivity.class);
+                        atras.putExtra("ID",extras.getInt("ID"));
+                        atras.putExtra("EMAIL",extras.getString("EMAIL"));
+                        atras.putExtra("PASS",extras.getString("PASS"));
+                        startActivity(atras);
                     }
 
                 } catch (Exception e) {

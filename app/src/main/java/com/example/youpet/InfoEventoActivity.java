@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,7 @@ public class InfoEventoActivity extends AppCompatActivity {
     protected Intent atras;
     protected Bundle extras;
     protected TextView tv1,tv3,tv5,tv7,tv9,tv11;
+    protected ImageView iv1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,6 +35,7 @@ public class InfoEventoActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         ib1 = findViewById(R.id.ib1_info_evento_atras);
+        iv1 = findViewById(R.id.iv1_info_evento_foto);
         tv1 = findViewById(R.id.tv1_info_evento_nombre);
         tv3 = findViewById(R.id.tv3_info_evento_fecha_rellenable);
         tv5 = findViewById(R.id.tv5_info_evento_hora_rellenable);
@@ -50,6 +53,27 @@ public class InfoEventoActivity extends AppCompatActivity {
             tv7.setText(extras.getString("LUGAR"));
             tv9.setText(extras.getString("USUARIO"));
             tv11.setText(extras.getString("DESCRIP"));
+            if(extras.getString("FOTO").equalsIgnoreCase("Campo")){
+                iv1.setImageResource(R.drawable.campo);
+            }
+            if(extras.getString("FOTO").equalsIgnoreCase("Playa")){
+                iv1.setImageResource(R.drawable.playa);
+            }
+            if(extras.getString("FOTO").equalsIgnoreCase("Domicilio")){
+                iv1.setImageResource(R.drawable.domicilio);
+            }
+            if(extras.getString("FOTO").equalsIgnoreCase("Pipicam")){
+                iv1.setImageResource(R.drawable.pipican);
+            }
+            if(extras.getString("FOTO").equalsIgnoreCase("Paseo")){
+                iv1.setImageResource(R.drawable.paseo);
+            }
+            if(extras.getString("FOTO").equalsIgnoreCase("Tienda de mascotas")){
+                iv1.setImageResource(R.drawable.tiendamascotas);
+            }
+            if(extras.getString("FOTO").equalsIgnoreCase("Parque")){
+                iv1.setImageResource(R.drawable.parque);
+            }
         }
 
         ib1.setOnClickListener(new View.OnClickListener() {

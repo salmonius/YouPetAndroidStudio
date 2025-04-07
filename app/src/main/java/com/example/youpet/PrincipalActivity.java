@@ -112,6 +112,8 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 pasar = new Intent(PrincipalActivity.this,CrearEventoActivity.class);
                 pasar.putExtra("ID",extras.getInt("ID"));
+                pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+                pasar.putExtra("PASS",extras.getString("PASS"));
                 startActivity(pasar);
 
             }
@@ -170,6 +172,9 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pasar = new Intent(PrincipalActivity.this,ListadoEventosActivity.class);
+                pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+                pasar.putExtra("PASS",extras.getString("PASS"));
+                pasar.putExtra("ID",extras.getInt("ID"));
                 startActivity(pasar);
 
             }
@@ -291,6 +296,7 @@ public class PrincipalActivity extends AppCompatActivity {
         pasar.putExtra("LUGAR",e1.getUbicacion());
         pasar.putExtra("USUARIO",usuario);
         pasar.putExtra("DESCRIP",e1.getDescripcion());
+        pasar.putExtra("FOTO",e1.getSeleccion());
         pasar.putExtra("EMAIL",extras.getString("EMAIL"));
         pasar.putExtra("PASS",extras.getString("PASS"));
         pasar.putExtra("ID",extras.getString("ID"));
