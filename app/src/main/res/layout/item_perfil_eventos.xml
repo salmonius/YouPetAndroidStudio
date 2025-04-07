@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
+    android:layout_height="400dp"
     android:background="#A7F2E8">
 
     <ImageView
@@ -15,7 +15,7 @@
 
     <LinearLayout
         android:layout_width="154dp"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         android:orientation="vertical">
 
         <TextView
@@ -73,6 +73,17 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/item_tv6_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/merienda_one"
+            android:gravity="center"
+            android:text="Foto:"
+            android:textColor="#070707"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/item_b1_eventos_guardar"
             android:layout_width="wrap_content"
@@ -87,7 +98,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         android:orientation="vertical">
 
         <EditText
@@ -139,6 +150,11 @@
             android:inputType="text"
             android:text="Ubicación"
             android:textColor="#0B0B0B" />
+
+        <Spinner
+            android:id="@+id/item_s1_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
 
         <Button
             android:id="@+id/item_b2_eventos_eliminar"

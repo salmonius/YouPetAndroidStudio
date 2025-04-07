@@ -2,9 +2,9 @@ package com.example.youpet;
 
 public class Evento {
     private int id,usuarioId;
-    private String nombre,descripcion,fecha,hora,ubicacion;
+    private String nombre,descripcion,fecha,hora,ubicacion,seleccion;
 
-    public Evento(int id, int usuarioId, String nombre, String descripcion, String fecha, String hora, String ubicacion) {
+    public Evento(int id, int usuarioId, String nombre, String descripcion, String fecha, String hora, String ubicacion,String seleccion) {
         this.id = id;
         this.usuarioId = usuarioId;
         this.nombre = nombre;
@@ -12,6 +12,7 @@ public class Evento {
         this.fecha = fecha;
         this.hora = hora;
         this.ubicacion = ubicacion;
+        this.seleccion = seleccion;
     }
 
     public int getId() {
@@ -68,5 +69,11 @@ public class Evento {
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+    public String getSeleccion() {
+        return seleccion;
+    }
+    public void setSeleccion(String seleccion) {
+        this.seleccion = seleccion;
     }
 }

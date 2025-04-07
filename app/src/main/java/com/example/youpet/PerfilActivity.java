@@ -11,10 +11,12 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +51,7 @@ public class PerfilActivity extends AppCompatActivity {
     protected List<Evento> listaEvento;
 
     protected int[] id,usuarioId,idE,usarioIdE;
-    protected String[] nombre,nombreE,tipo,edad,tamanio,sexo,castrado,sociabilidad,descripcion,fechaE,hora,ubicacion;
+    protected String[] nombre,nombreE,tipo,edad,tamanio,sexo,castrado,sociabilidad,descripcion,fechaE,hora,ubicacion,seleccion;
     protected byte[][] imagenes;
     protected Mascota m1;
     protected Evento e1;
@@ -167,6 +169,7 @@ public class PerfilActivity extends AppCompatActivity {
         fechaE = new String[listaEvento.size()];
         hora = new String[listaEvento.size()];
         ubicacion= new String[listaEvento.size()];
+        seleccion= new String[listaEvento.size()];
 
         //rellenamos con un bucle for los Arrays
         for (int i = 0; i < listaMascota.size(); i++) {
@@ -195,6 +198,7 @@ public class PerfilActivity extends AppCompatActivity {
             fechaE[i] = e1.getFecha();
             hora[i] = e1.getHora();
             ubicacion[i] = e1.getUbicacion();
+            seleccion[i] = e1.getSeleccion();
         }
 
         //ImagenButton para ir hacia atras
@@ -540,6 +544,9 @@ public class PerfilActivity extends AppCompatActivity {
             EditText edit1e, edit2e, edit3e, edit4e, edit5e;
 
             Button b1e, b2e;
+            Spinner s1e;
+            ArrayAdapter<String> adaptadorE;
+            String[] itemSpinner ={"Campo","Playa","Domicilio","Pipicam","Paseo","Tienda de mascotas","Parque"};
 
             public AdaptadorEventosHolder(@NonNull View itemView) {
                 super(itemView);
@@ -552,20 +559,41 @@ public class PerfilActivity extends AppCompatActivity {
                 iv1e = itemView.findViewById(R.id.item_iv1_evento);
                 b1e = itemView.findViewById(R.id.item_b1_eventos_guardar);
                 b2e = itemView.findViewById(R.id.item_b2_eventos_eliminar);
+                s1e = itemView.findViewById(R.id.item_s1_eventos);
+
+                adaptadorE = new ArrayAdapter<String>(PerfilActivity.this, android.R.layout.simple_spinner_item,itemSpinner);
+                s1e.setAdapter(adaptadorE);
             }
 
             @SuppressLint("ResourceType")
             public void imprimir(int position) {
-                // Configuración de la imagen de la mascota
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imagenes[position], 0, imagenes[position].length);
-                iv1e.setImageBitmap(bitmap);
-
                 // Establecer valores de texto
                 edit1e.setText(nombreE[position]);
                 edit2e.setText(descripcion[position]);
                 edit3e.setText(fechaE[position]);
                 edit4e.setText(hora[position]);
                 edit5e.setText(ubicacion[position]);
+                if(seleccion[position].equalsIgnoreCase("campo")){
+                    iv1e.setImageResource(R.drawable.campo);
+                }
+                if(seleccion[position].equalsIgnoreCase("playa")){
+                    iv1e.setImageResource(R.drawable.playa);
+                }
+                if(seleccion[position].equalsIgnoreCase("domicilio")){
+                    iv1e.setImageResource(R.drawable.domicilio);
+                }
+                if(seleccion[position].equalsIgnoreCase("pipicam")){
+                    iv1e.setImageResource(R.drawable.pipican);
+                }
+                if(seleccion[position].equalsIgnoreCase("paseo")){
+                    iv1e.setImageResource(R.drawable.paseo);
+                }
+                if(seleccion[position].equalsIgnoreCase("tienda de mascotas")){
+                    iv1e.setImageResource(R.drawable.tiendamascotas);
+                }
+                if(seleccion[position].equalsIgnoreCase("parque")){
+                    iv1e.setImageResource(R.drawable.parque);
+                }
 
 
                 // Habilitar/deshabilitar la edición
@@ -575,6 +603,7 @@ public class PerfilActivity extends AppCompatActivity {
                 edit3e.setEnabled(esEditable);
                 edit4e.setEnabled(esEditable);
                 edit5e.setEnabled(esEditable);
+                s1e.setEnabled(esEditable);
 
                 // Cambiar el color de fondo solo si la edición está habilitada
                 if (esEditable) {
@@ -583,12 +612,14 @@ public class PerfilActivity extends AppCompatActivity {
                     edit3e.setBackgroundColor(Color.WHITE);
                     edit4e.setBackgroundColor(Color.WHITE);
                     edit5e.setBackgroundColor(Color.WHITE);
+                    s1e.setBackgroundColor(Color.WHITE);
                 }else{
                     edit1e.setBackgroundColor(Color.TRANSPARENT);
                     edit2e.setBackgroundColor(Color.TRANSPARENT);
                     edit3e.setBackgroundColor(Color.TRANSPARENT);
                     edit4e.setBackgroundColor(Color.TRANSPARENT);
                     edit5e.setBackgroundColor(Color.TRANSPARENT);
+                    s1e.setBackgroundColor(Color.TRANSPARENT);
                 }
 
                 // Mostrar/ocultar los botones
@@ -603,13 +634,14 @@ public class PerfilActivity extends AppCompatActivity {
                             String fechaE = edit3e.getText().toString();
                             String hora = edit4e.getText().toString();
                             String ubicacion = edit5e.getText().toString();
+                            String seleccion = s1e.getSelectedItem().toString();
 
 
                             if (nombre.isEmpty()||descripcion.isEmpty()||fechaE.isEmpty()||hora.isEmpty()||ubicacion.isEmpty()){
                                 Toast.makeText(PerfilActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
                                 return;
                             }else{
-                                boolean esActualizable = gbd.actualizarEvento(extra.getInt("ID"), nombre, descripcion, fechaE, hora, ubicacion);
+                                boolean esActualizable = gbd.actualizarEvento(extra.getInt("ID"), nombre, descripcion, fechaE, hora, ubicacion,seleccion);
 
 
                                 if (esActualizable){

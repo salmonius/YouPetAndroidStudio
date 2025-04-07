@@ -23,7 +23,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apellidos TEXT, telefono TEXT, email TEXT, fechaNacimiento TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, contrasenia TEXT, imagen BLOB)"); // Cambio aquí: fechaNacimiento -> fecha
         db.execSQL("CREATE TABLE mascota (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, tipo TEXT, fecha TEXT, tamano TEXT, sexo TEXT, castrado TEXT, sociabilidad TEXT, imagen BLOB, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)"); // Cambio aquí: fechaNacimiento -> fecha
-        db.execSQL("CREATE TABLE evento (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
+        db.execSQL("CREATE TABLE evento (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, nombre TEXT, descripcion TEXT, fecha TEXT, hora TEXT, ubicacion TEXT,seleccion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
         db.execSQL("CREATE TABLE noticia (id INTEGER PRIMARY KEY AUTOINCREMENT, usuarioId INTEGER, fecha_hora TEXT, titulo TEXT, descripcion TEXT, FOREIGN KEY(usuarioId) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE CASCADE)");
     }
 
@@ -95,7 +95,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
     }
 
     //Insertar evento
-    public void insertarEvento(int usuarioId, String nombre, String descripcion, String fecha, String hora, String ubicacion) {
+    public void insertarEvento(int usuarioId, String nombre, String descripcion, String fecha, String hora, String ubicacion,String seleccion) {
         db = this.getWritableDatabase();
 
         // Usamos ContentValues para pasar los valores
@@ -106,6 +106,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
         values.put("fecha", fecha);
         values.put("hora", hora);
         values.put("ubicacion", ubicacion);
+        values.put("seleccion", seleccion);
 
         // Inserción de datos en la tabla usuario
         long resultado = db.insert("evento", null, values);
@@ -184,7 +185,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
 
     }
 
-    public boolean actualizarEvento(int id, String nombre, String descripcion, String fecha, String hora, String ubicacion) {
+    public boolean actualizarEvento(int id, String nombre, String descripcion, String fecha, String hora, String ubicacion,String seleccion) {
         db = this.getWritableDatabase();
 
         // Usamos ContentValues para pasar los valores
@@ -195,6 +196,7 @@ public class GestorDeBD extends SQLiteOpenHelper {
         values.put("fecha", fecha);
         values.put("hora", hora);
         values.put("ubicacion", ubicacion);
+        values.put("seleccion", seleccion);
 
         // Inserción de datos en la tabla usuario
         int filasAfectadas = db.update("evento", values, "id = ?", new String[]{String.valueOf(id)});
@@ -287,10 +289,11 @@ public class GestorDeBD extends SQLiteOpenHelper {
                 String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
                 String hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"));
                 String ubicacion = cursor.getString(cursor.getColumnIndexOrThrow("ubicacion"));
+                String seleccion = cursor.getString(cursor.getColumnIndexOrThrow("seleccion"));
 
 
                 // Crea el objeto Mascota y añádelo a la lista
-                Evento evento = new Evento(id, usuarioId, nombre, descripcion, fecha, hora, ubicacion);
+                Evento evento = new Evento(id, usuarioId, nombre, descripcion, fecha, hora, ubicacion,seleccion);
                 listaEventos.add(evento);
             } while (cursor.moveToNext()); // Continúa mientras haya más filas
         }
@@ -356,10 +359,11 @@ public class GestorDeBD extends SQLiteOpenHelper {
                 String fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"));
                 String hora = cursor.getString(cursor.getColumnIndexOrThrow("hora"));
                 String ubicacion = cursor.getString(cursor.getColumnIndexOrThrow("ubicacion"));
+                String seleccion = cursor.getString(cursor.getColumnIndexOrThrow("seleccion"));
 
 
                 // Crea el objeto Evento
-                e1 = new Evento(ide, usuarioId, nombre, descripcion, fecha, hora, ubicacion);
+                e1 = new Evento(ide, usuarioId, nombre, descripcion, fecha, hora, ubicacion,seleccion);
             } while (cursor.moveToNext()); // Continúa mientras haya más filas
 
         }
