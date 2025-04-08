@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -191,10 +192,15 @@ public class PrincipalActivity extends AppCompatActivity {
                 String titulo = edit1.getText().toString().toUpperCase();
                 String descripcion = edit2.getText().toString();
 
-                gbd.insertarNoticia(extras.getInt("ID"),fechaHoraString,titulo,descripcion);
+                if(titulo.isEmpty()||descripcion.isEmpty()){
+                    Toast.makeText(PrincipalActivity.this, "Debe rellenar los campos titulo y descripción", Toast.LENGTH_SHORT).show();
+                }else{
+                    gbd.insertarNoticia(extras.getInt("ID"),fechaHoraString,titulo,descripcion);
 
-                edit1.setText("");
-                edit2.setText("");
+                    edit1.setText("");
+                    edit2.setText("");
+                }
+
 
                 // Recargar la lista de noticias desde la base de datos
                 listaNoticias = gbd.recuperarAllNoticias();
