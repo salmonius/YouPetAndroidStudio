@@ -85,6 +85,24 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
                         Toast.makeText(CrearCuentaUsuarioActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if (tel.length() != 9 || !tel.matches("\\d{9}")) {
+                        Toast.makeText(CrearCuentaUsuarioActivity.this, "El teléfono debe tener 9 dígitos", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (!email.contains("@") || !email.contains(".")) {
+                        Toast.makeText(CrearCuentaUsuarioActivity.this, "Email inválido", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (pass.length() < 6) {
+                        Toast.makeText(CrearCuentaUsuarioActivity.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (!fecha.matches("\\d{2}-\\d{2}-\\d{2}")) {
+                        Toast.makeText(CrearCuentaUsuarioActivity.this, "La fecha debe tener el formato dd-MM-yy", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                     // Insertar usuario
                     gdb.insertarUsuario(nom, ape, tel, email, fecha, direc, pobla, provin, pass, imageBytes);

@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,11 +29,18 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1; // Código para seleccionar imagen
     protected Button b1, b2, b3;
     protected Intent pasar;
-    protected EditText edit1, edit2, edit3, edit4, edit5, edit6, edit7, edit8;
+    protected EditText edit1, edit3, edit8;
     protected ImageView iv1;
     protected GestorDeBD gdb;
     protected Bundle extras;
     protected int id = 0, id2 = 0;
+    protected Spinner sp2,sp4,sp5,sp6,sp7;
+    protected ArrayAdapter<String> adap2,adap4,adap5,adap6,adap7;
+    protected String[] tipo={"Perro","Gato","Pajaro","Pez","Reptil"};
+    protected String[] tamanio={"Pequeño","Mediano","Grande"};
+    protected String[] sexo={"Macho","Hembra"};
+    protected String[] castrado={"Si","No"};
+    protected String[] sociabilidad={"Si","No"};
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,13 +63,24 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
         b2 = findViewById(R.id.b2_crear_m_crear);
         b3 = findViewById(R.id.b3_no_crear_mascota);
         edit1 = findViewById(R.id.edit1_crear_m_nombre);
-        edit2 = findViewById(R.id.edit2_crear_m_tipo);
+        sp2 = findViewById(R.id.sp2_crear_m_tipo);
         edit3 = findViewById(R.id.edit3_crear_m_edad);
-        edit4 = findViewById(R.id.edit4_crear_m_tamanio);
-        edit5 = findViewById(R.id.edit5_crear_m_sexo);
-        edit6 = findViewById(R.id.edit6_crear_m_castrado);
-        edit7 = findViewById(R.id.edit7_crear_m_sociabilidad);
+        sp4 = findViewById(R.id.sp4_crear_m_tamanio);
+        sp5 = findViewById(R.id.sp5_crear_m_sexo);
+        sp6 = findViewById(R.id.sp6_crear_m_castrado);
+        sp7 = findViewById(R.id.sp7_crear_m_sociabilidad);
         edit8 = findViewById(R.id.edit8_crear_m_subir);
+
+        adap2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,tipo);
+        sp2.setAdapter(adap2);
+        adap4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,tamanio);
+        sp4.setAdapter(adap4);
+        adap5 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,sexo);
+        sp5.setAdapter(adap5);
+        adap6 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,castrado);
+        sp6.setAdapter(adap6);
+        adap7 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,sociabilidad);
+        sp7.setAdapter(adap7);
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -78,12 +98,12 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
         // Botón para crear mascota
         b2.setOnClickListener(v -> {
             String nom = edit1.getText().toString().trim();
-            String tipo = edit2.getText().toString().trim();
+            String tipo = sp2.getSelectedItem().toString();
             String fecha = edit3.getText().toString().trim();
-            String tamanio = edit4.getText().toString().trim();
-            String sexo = edit5.getText().toString().trim();
-            String castrado = edit6.getText().toString().trim();
-            String social = edit7.getText().toString().trim();
+            String tamanio = sp4.getSelectedItem().toString();
+            String sexo = sp5.getSelectedItem().toString();
+            String castrado = sp6.getSelectedItem().toString();
+            String social = sp7.getSelectedItem().toString();
             byte[] imageBytes = (byte[]) edit8.getTag();
 
 
