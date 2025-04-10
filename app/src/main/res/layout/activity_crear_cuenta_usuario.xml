@@ -305,13 +305,15 @@
         android:id="@+id/b2_crear_u_crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#00CE56"
         android:fontFamily="@font/merienda_one"
         android:text="Crear usuario"
         android:textColor="#070707"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit10_crear_u_subir"
+        app:layout_constraintVertical_bias="0.933" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

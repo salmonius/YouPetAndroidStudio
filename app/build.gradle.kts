@@ -32,13 +32,18 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.play.services.maps)
+
+    // Dependencias para pruebas unitarias
     testImplementation(libs.junit)
+
+    // Dependencias para pruebas instrumentadas
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation("androidx.test:core:1.5.0")  // Dependencia añadida
+    androidTestImplementation("androidx.test:runner:1.5.2")  // Dependencia añadida
 }
