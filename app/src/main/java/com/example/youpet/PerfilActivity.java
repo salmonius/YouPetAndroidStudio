@@ -706,6 +706,19 @@ public class PerfilActivity extends AppCompatActivity {
                 }
                 b2e.setVisibility(esEditable? View.VISIBLE : View.INVISIBLE);
 
+                if (esEditable) {
+                    b2e.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            gbd.eliminarEvento(idE[position]);
+                            Toast.makeText(PerfilActivity.this, "Evento eliminado con éxito", Toast.LENGTH_SHORT).show();
+
+                            listaEvento.remove(position);    // Eliminar del ArrayList
+                            rv2.getAdapter().notifyItemRemoved(position); // Notificar eliminación
+                            rv2.getAdapter().notifyItemRangeChanged(position, listaEvento.size());
+                        }
+                    });
+                }
                 // Hacer que el ImageView sea clickeable solo cuando la edición está habilitada
                 iv1e.setClickable(esEditable);
                 iv1e.setEnabled(esEditable);

@@ -235,6 +235,8 @@ public class PrincipalActivity extends AppCompatActivity {
         }
         if(item.getItemId()==R.id.item_mascota) {
             pasar = new Intent(PrincipalActivity.this, CrearCuentaMascotasActivity.class);
+            pasar.putExtra("EMAIL",extras.getString("EMAIL"));
+            pasar.putExtra("PASS",extras.getString("PASS"));
             pasar.putExtra("ID",extras.getInt("ID"));
             startActivity(pasar);
 

@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,7 @@ public class InfoEventoActivity extends AppCompatActivity {
     protected Bundle extras;
     protected TextView tv1,tv3,tv5,tv7,tv9,tv11;
     protected ImageView iv1;
+    protected Button b1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -42,6 +45,7 @@ public class InfoEventoActivity extends AppCompatActivity {
         tv7 = findViewById(R.id.tv7_info_evento_ubicacion_rellenable);
         tv9 = findViewById(R.id.tv9_info_evento_creadopor_rellenable);
         tv11 = findViewById(R.id.tv11_info_evento_descripcion_rellenable);
+        b1= findViewById(R.id.b1_info_evento);
 
 
         extras = getIntent().getExtras();
@@ -84,6 +88,13 @@ public class InfoEventoActivity extends AppCompatActivity {
                 atras.putExtra("PASS",extras.getString("PASS"));
                 atras.putExtra("ID",extras.getString("ID"));
                 startActivity(atras);
+            }
+        });
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(InfoEventoActivity.this, "Te has apuntado al evento", Toast.LENGTH_SHORT).show();
             }
         });
     }

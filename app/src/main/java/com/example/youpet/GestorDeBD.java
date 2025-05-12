@@ -230,12 +230,12 @@ public class GestorDeBD extends SQLiteOpenHelper {
             String direccion = cursor.getString(cursor.getColumnIndexOrThrow("direccion"));
             String poblacion = cursor.getString(cursor.getColumnIndexOrThrow("poblacion"));
             String provincia = cursor.getString(cursor.getColumnIndexOrThrow("provincia"));
-            String contraseña = cursor.getString(cursor.getColumnIndexOrThrow("contrasenia"));
+            String contrasenia1 = cursor.getString(cursor.getColumnIndexOrThrow("contrasenia"));
             byte[] imagen = cursor.getBlob(cursor.getColumnIndexOrThrow("imagen")); // Campo tipo BLOB
 
             // Crea el objeto Usuario
             usuario = new Usuario(id, nombre, apellidos, telefono, email, fechaNacimiento,
-                    direccion, poblacion, provincia, contraseña, imagen);
+                    direccion, poblacion, provincia, contrasenia1, imagen);
         }
 
         cursor.close(); // Siempre cierra el cursor para liberar recursos
