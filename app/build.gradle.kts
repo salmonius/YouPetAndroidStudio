@@ -37,6 +37,8 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.play.services.maps)
+    implementation(libs.play.services.ads)
+    implementation(libs.gridlayout)
 
     // Dependencias para pruebas unitarias
     testImplementation(libs.junit)
