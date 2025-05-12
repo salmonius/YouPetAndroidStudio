@@ -115,8 +115,8 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
                         Toast.makeText(CrearCuentaUsuarioActivity.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (!fecha.matches("\\d{2}-\\d{2}-\\d{2}")) {
-                        Toast.makeText(CrearCuentaUsuarioActivity.this, "La fecha debe tener el formato dd-MM-yy", Toast.LENGTH_SHORT).show();
+                    if (!fecha.matches("\\d{1,2}/\\d{1,2}/\\d{4}")) {
+                        Toast.makeText(CrearCuentaUsuarioActivity.this, "La fecha debe tener el formato dd/MM/yyyy", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

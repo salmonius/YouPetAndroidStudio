@@ -1,6 +1,7 @@
 package com.example.youpet;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -333,6 +335,31 @@ public class PerfilActivity extends AppCompatActivity {
                 }
             });
 
+            b2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PerfilActivity.this);
+                    builder.setTitle("Eliminar cuenta");
+                    builder.setMessage("¿Estas seguro que quieres eliminar tu cuenta?");
+
+                    builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            gbd.eliminarUsuario(extra.getInt("ID"));
+                            atras = new Intent(PerfilActivity.this, AutenticacionActivity.class);
+                            startActivity(atras);
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(PerfilActivity.this, "Ocurrio un error inesperado", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+            });
+
 
         ib2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -516,6 +543,19 @@ public class PerfilActivity extends AppCompatActivity {
                 }
                 b2t.setVisibility(esEditable? View.VISIBLE : View.INVISIBLE);
 
+                if (esEditable) {
+                    b2t.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            gbd.eliminarMascota(id[position]);
+                            Toast.makeText(PerfilActivity.this, "Mascota eliminada con éxito", Toast.LENGTH_SHORT).show();
+
+                            listaMascota.remove(position);    // Eliminar del ArrayList
+                            rv1.getAdapter().notifyItemRemoved(position); // Notificar eliminación
+                            rv1.getAdapter().notifyItemRangeChanged(position, listaMascota.size());
+                        }
+                    });
+                }
                 // Hacer que el ImageView sea clickeable solo cuando la edición está habilitada
                 iv1t.setClickable(esEditable);
                 iv1t.setEnabled(esEditable);

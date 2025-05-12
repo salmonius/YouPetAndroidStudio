@@ -329,7 +329,7 @@
     <Button
         android:id="@+id/b1_perfil_guardar"
         android:layout_width="104dp"
-        android:layout_height="36dp"
+        android:layout_height="40dp"
         android:layout_marginStart="172dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#050505"
@@ -342,14 +342,14 @@
 
     <Button
         android:id="@+id/b2_perfil_eliminar"
-        android:layout_width="104dp"
-        android:layout_height="35dp"
+        android:layout_width="128dp"
+        android:layout_height="38dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#FB0E0E"
         android:fontFamily="@font/merienda_one"
-        android:text="Eliminar"
+        android:text="Eliminar cuenta"
         android:textColor="#0D0D0D"
-        android:textSize="12sp"
+        android:textSize="9sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toEndOf="@+id/b1_perfil_guardar"

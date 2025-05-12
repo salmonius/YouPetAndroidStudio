@@ -235,7 +235,7 @@ public class PrincipalActivity extends AppCompatActivity {
         }
         if(item.getItemId()==R.id.item_mascota) {
             pasar = new Intent(PrincipalActivity.this, CrearCuentaMascotasActivity.class);
-            pasar.putExtra("ID2",extras.getInt("ID"));
+            pasar.putExtra("ID",extras.getInt("ID"));
             startActivity(pasar);
 
         }

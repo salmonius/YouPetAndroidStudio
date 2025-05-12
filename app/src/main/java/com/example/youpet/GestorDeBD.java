@@ -410,6 +410,24 @@ public class GestorDeBD extends SQLiteOpenHelper {
         return listaEvento;
     }
 
+     public void eliminarEvento(int id) {
+        db = this.getWritableDatabase();
+        db.delete("evento", "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
 
+    public void eliminarMascota(int id) {
+        db = this.getWritableDatabase();
+        db.delete("mascota", "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+    public void eliminarUsuario(int id) {
+        db = this.getWritableDatabase();
+        db.delete("usuario", "id = ?", new String[]{String.valueOf(id)});
+        db.delete("evento", "usuarioId = ?", new String[]{String.valueOf(id)});
+        db.delete("mascota", "usuarioId = ?", new String[]{String.valueOf(id)});
+        db.delete("noticia", "usuarioId = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
 }
 
