@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/item_iv1_mascota"
-            android:layout_width="121dp"
-            android:layout_height="85dp"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
             app:srcCompat="@drawable/pata" />
 
         <EditText
@@ -111,7 +111,7 @@
             android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginBottom="5px"
+            android:layout_marginBottom="7px"
             android:fontFamily="@font/merienda_one"
             android:gravity="center"
             android:text="Sociabilidad:"
@@ -139,7 +139,7 @@
             android:id="@+id/item_edit1_mascotas_nombre"
             android:layout_width="match_parent"
             android:layout_height="37dp"
-            android:layout_marginBottom="6px"
+            android:layout_marginBottom="9px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -172,7 +172,7 @@
             android:id="@+id/item_edit4_mascotas_tamano"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginBottom="15px"
+            android:layout_marginBottom="13px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -204,8 +204,8 @@
         <EditText
             android:id="@+id/item_edit7_mascotas_sociabilidad"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="3px"
+            android:layout_height="37dp"
+            android:layout_marginBottom="7px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -224,10 +224,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    </LinearLayout>
 </LinearLayout>
