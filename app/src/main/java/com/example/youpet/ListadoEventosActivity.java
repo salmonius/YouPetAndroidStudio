@@ -2,6 +2,7 @@ package com.example.youpet;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class ListadoEventosActivity extends AppCompatActivity {
     protected String[] nombre,fecha,hora,seleccion;
     protected Evento e1;
     protected Button b1;
+    protected MediaPlayer mp;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -62,6 +64,8 @@ public class ListadoEventosActivity extends AppCompatActivity {
         ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(ListadoEventosActivity.this, R.raw.bubbles);
+                mp.start();
                 atras = new Intent(ListadoEventosActivity.this, PrincipalActivity.class);
                 atras.putExtra("EMAIL",extras.getString("EMAIL"));
                 atras.putExtra("PASS",extras.getString("PASS"));

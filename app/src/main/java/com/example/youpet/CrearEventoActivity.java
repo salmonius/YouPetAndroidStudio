@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,7 @@ public class CrearEventoActivity extends AppCompatActivity {
     protected Spinner s1;
     protected String[] itemSpinner ={"Campo","Playa","Domicilio","Pipicam","Paseo","Tienda de mascotas","Parque"};
     protected ArrayAdapter<String> adaptador;
+    protected MediaPlayer mp;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -108,6 +110,9 @@ public class CrearEventoActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mp = MediaPlayer.create(CrearEventoActivity.this, R.raw.bubbles);
+                mp.start();
+                // Obtener los valores de los campos de texto
                 String nombre = edit1.getText().toString().trim();
                 String descripcion = edit2.getText().toString().trim();
                 String fecha = edit3.getText().toString().trim();
@@ -147,6 +152,8 @@ public class CrearEventoActivity extends AppCompatActivity {
         ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(CrearEventoActivity.this, R.raw.bubbles);
+                mp.start();
                 atras = new Intent(CrearEventoActivity.this,PrincipalActivity.class);
                 atras.putExtra("ID",extras.getInt("ID"));
                 startActivity(atras);

@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -32,6 +33,7 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
     protected GestorDeBD gdb;
     protected Usuario u1;
 
+    protected MediaPlayer mp;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(CrearCuentaUsuarioActivity.this, R.raw.bubbles);
+                mp.start();
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, PICK_IMAGE);
             }
@@ -85,6 +89,9 @@ public class CrearCuentaUsuarioActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(CrearCuentaUsuarioActivity.this, R.raw.bubbles);
+                mp.start();
+
                 try {
                     String nom = edit1.getText().toString().trim();
                     String ape = edit2.getText().toString().trim();

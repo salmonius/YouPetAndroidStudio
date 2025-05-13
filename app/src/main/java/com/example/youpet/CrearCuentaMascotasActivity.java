@@ -3,6 +3,7 @@ package com.example.youpet;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -40,6 +41,7 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
     protected String[] sexo={"Macho","Hembra"};
     protected String[] castrado={"Si","No"};
     protected String[] sociabilidad={"Sociable en general","Sociable solo con machos","Sociable solo con hembras","No es sociable"};
+    protected MediaPlayer mp;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -85,12 +87,16 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
 
         // Botón para seleccionar imagen
         b1.setOnClickListener(v -> {
+            mp = MediaPlayer.create(CrearCuentaMascotasActivity.this, R.raw.bubbles);
+            mp.start();
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(intent, PICK_IMAGE);
         });
 
         // Botón para crear mascota
         b2.setOnClickListener(v -> {
+            mp = MediaPlayer.create(CrearCuentaMascotasActivity.this, R.raw.bubbles);
+            mp.start();
             String nom = edit1.getText().toString().trim();
             String tipo = sp2.getSelectedItem().toString();
             String fecha = edit3.getText().toString().trim();
@@ -128,6 +134,8 @@ public class CrearCuentaMascotasActivity extends AppCompatActivity {
 
         // Botón para omitir creación
         b3.setOnClickListener(v -> {
+                mp = MediaPlayer.create(CrearCuentaMascotasActivity.this, R.raw.bubbles);
+                mp.start();
 
                 pasar = new Intent(CrearCuentaMascotasActivity.this, PrincipalActivity.class);
                 pasar.putExtra("EMAIL",extras.getString("EMAIL"));

@@ -5,12 +5,12 @@
     android:id="@+id/CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:backgroundTint="#638380"
+    android:layout_margin="10dp"
+    android:backgroundTint="#678984"
     android:orientation="horizontal"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="30dp"
-    app:cardElevation="40dp">
+    app:cardElevation="60dp">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -2,6 +2,7 @@ package com.example.youpet;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class InfoEventoActivity extends AppCompatActivity {
     protected TextView tv1,tv3,tv5,tv7,tv9,tv11;
     protected ImageView iv1;
     protected Button b1;
+    protected MediaPlayer mp;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -94,6 +96,8 @@ public class InfoEventoActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(InfoEventoActivity.this, R.raw.confirmacion);
+                mp.start();
                 Toast.makeText(InfoEventoActivity.this, "Te has apuntado al evento", Toast.LENGTH_SHORT).show();
             }
         });

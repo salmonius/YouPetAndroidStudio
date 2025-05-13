@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -61,6 +62,7 @@ public class PerfilActivity extends AppCompatActivity {
     protected boolean edicionMascotaHabilitada = false;
     protected boolean edicionUsuarioHabilitada = false;
     protected boolean edicionEventoHabilitada = false;
+    protected MediaPlayer mp;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -206,6 +208,8 @@ public class PerfilActivity extends AppCompatActivity {
 
         //ImagenButton para ir hacia atras
         ib1.setOnClickListener(v -> {
+            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+            mp.start();
             atras = new Intent(PerfilActivity.this, PrincipalActivity.class);
             atras.putExtra("ID",extra.getInt("ID"));
             atras.putExtra("EMAIL",extra.getString("EMAIL"));
@@ -216,6 +220,8 @@ public class PerfilActivity extends AppCompatActivity {
 
         //ImagenButton para editar los datos del Usuario
         ib3.setOnClickListener(v -> {
+            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+            mp.start();
 
             edicionUsuarioHabilitada = !edicionUsuarioHabilitada;
             if (edicionUsuarioHabilitada) {
@@ -265,6 +271,8 @@ public class PerfilActivity extends AppCompatActivity {
         ib5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                mp.start();
                 atras = new Intent(PerfilActivity.this, CrearCuentaMascotasActivity.class);
                 atras.putExtra("ID",extra.getInt("ID"));
                 atras.putExtra("EMAIL",extra.getString("EMAIL"));
@@ -276,6 +284,8 @@ public class PerfilActivity extends AppCompatActivity {
         ib7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                mp.start();
                 atras = new Intent(PerfilActivity.this, CrearEventoActivity.class);
                 atras.putExtra("ID",extra.getInt("ID"));
                 atras.putExtra("EMAIL",extra.getString("EMAIL"));
@@ -288,6 +298,8 @@ public class PerfilActivity extends AppCompatActivity {
             b1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                    mp.start();
 
                     String nombre = edit1.getText().toString();
                     String apellidos = edit2.getText().toString();
@@ -338,6 +350,9 @@ public class PerfilActivity extends AppCompatActivity {
             b2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                    mp.start();
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(PerfilActivity.this);
                     builder.setTitle("Eliminar cuenta");
                     builder.setMessage("¿Estas seguro que quieres eliminar tu cuenta?");
@@ -364,6 +379,8 @@ public class PerfilActivity extends AppCompatActivity {
         ib2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                mp.start();
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, PICK_IMAGE);
             }
@@ -371,12 +388,16 @@ public class PerfilActivity extends AppCompatActivity {
 
         //ImagenButton para habilitar los campos del RecyclerView
         ib4.setOnClickListener(v -> {
+            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+            mp.start();
             edicionMascotaHabilitada = !edicionMascotaHabilitada;
             Log.d("PerfilActivity", "Edición habilitada: " + edicionMascotaHabilitada); // Verifica el estado
             rv1.getAdapter().notifyDataSetChanged();
         });
 
         ib6.setOnClickListener(v -> {
+            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+            mp.start();
             edicionEventoHabilitada = !edicionEventoHabilitada;
             Log.d("PerfilActivity", "Edición habilitada: " + edicionEventoHabilitada); // Verifica el estado
             rv2.getAdapter().notifyDataSetChanged();
@@ -493,6 +514,9 @@ public class PerfilActivity extends AppCompatActivity {
                     ib1t.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                            mp.start();
+
                             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             startActivityForResult(intent, PICK_IMAGEN);
                         }
@@ -503,6 +527,8 @@ public class PerfilActivity extends AppCompatActivity {
                     b1t.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                            mp.start();
 
                             String nombre = edit1t.getText().toString();
                             String tipo = edit2t.getText().toString();
@@ -547,6 +573,9 @@ public class PerfilActivity extends AppCompatActivity {
                     b2t.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                            mp.start();
+
                             gbd.eliminarMascota(id[position]);
                             Toast.makeText(PerfilActivity.this, "Mascota eliminada con éxito", Toast.LENGTH_SHORT).show();
 
@@ -672,6 +701,8 @@ public class PerfilActivity extends AppCompatActivity {
                     b1e.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                            mp.start();
 
                             String nombre = edit1e.getText().toString();
                             String descripcion = edit2e.getText().toString();
@@ -710,6 +741,9 @@ public class PerfilActivity extends AppCompatActivity {
                     b2e.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            mp = MediaPlayer.create(PerfilActivity.this, R.raw.bubbles);
+                            mp.start();
+
                             gbd.eliminarEvento(idE[position]);
                             Toast.makeText(PerfilActivity.this, "Evento eliminado con éxito", Toast.LENGTH_SHORT).show();
 

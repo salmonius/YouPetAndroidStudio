@@ -2,6 +2,7 @@ package com.example.youpet;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ public class AutenticacionActivity extends AppCompatActivity {
     protected Intent pasar;
     protected GestorDeBD gbd;
     protected Usuario u1;
+    protected MediaPlayer mp;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,6 +43,9 @@ public class AutenticacionActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(AutenticacionActivity.this, R.raw.bubbles);
+                mp.start();
+
                 String email = edit1.getText().toString().trim();
                 String contrasenia = edit2.getText().toString().trim();
 

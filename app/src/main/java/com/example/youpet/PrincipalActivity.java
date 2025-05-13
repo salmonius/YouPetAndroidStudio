@@ -2,6 +2,7 @@ package com.example.youpet;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,6 +41,7 @@ public class PrincipalActivity extends AppCompatActivity {
     protected TextView tv3n,tv3e,tv3l,tv3f,tv3i,tv4n,tv4e,tv4l,tv4f,tv4i,tv5n,tv5e,tv5l,tv5f,tv5i,tv6n,tv6e,tv6l,tv6f,tv6i,tv7n,tv7e,tv7l,tv7f,tv7i;
 
 
+    protected MediaPlayer mp;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 pasar = new Intent(PrincipalActivity.this,CrearEventoActivity.class);
                 pasar.putExtra("ID",extras.getInt("ID"));
                 pasar.putExtra("EMAIL",extras.getString("EMAIL"));
@@ -122,6 +126,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 int id = Integer.parseInt(tv3i.getText().toString());
                 String usuario = tv3n.getText().toString();
                 Evento e1=recogeEvento(id);
@@ -131,6 +137,9 @@ public class PrincipalActivity extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 int id = Integer.parseInt(tv4i.getText().toString());
                 String usuario = tv4n.getText().toString();
                 Evento e1=recogeEvento(id);
@@ -141,6 +150,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 int id = Integer.parseInt(tv5i.getText().toString());
                 String usuario = tv5n.getText().toString();
                 Evento e1=recogeEvento(id);
@@ -151,6 +162,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 int id = Integer.parseInt(tv6i.getText().toString());
                 String usuario = tv6n.getText().toString();
                 Evento e1=recogeEvento(id);
@@ -161,6 +174,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 int id = Integer.parseInt(tv7i.getText().toString());
                 String usuario = tv7n.getText().toString();
                 Evento e1=recogeEvento(id);
@@ -172,6 +187,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 pasar = new Intent(PrincipalActivity.this,ListadoEventosActivity.class);
                 pasar.putExtra("EMAIL",extras.getString("EMAIL"));
                 pasar.putExtra("PASS",extras.getString("PASS"));
@@ -185,6 +202,8 @@ public class PrincipalActivity extends AppCompatActivity {
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
+                mp.start();
                 Date fechaHoraActual = new Date();
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 String fechaHoraString = formato.format(fechaHoraActual);
