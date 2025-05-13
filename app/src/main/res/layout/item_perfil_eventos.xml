@@ -77,6 +77,7 @@
             android:id="@+id/item_tv6_eventos"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginBottom="15px"
             android:fontFamily="@font/merienda_one"
             android:gravity="center"
             android:text="Foto:"
@@ -104,7 +105,8 @@
         <EditText
             android:id="@+id/item_edit1_eventos_usuario"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="15px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -114,7 +116,8 @@
         <EditText
             android:id="@+id/item_edit2_eventos_mascota"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="47px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -124,7 +127,8 @@
         <EditText
             android:id="@+id/item_edit3_eventos_fecha"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="15px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -134,7 +138,8 @@
         <EditText
             android:id="@+id/item_edit4_eventos_hora"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="15px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -144,7 +149,8 @@
         <EditText
             android:id="@+id/item_edit5_eventos_ubicacion"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="15px"
             android:background="#A7F2E8"
             android:ems="10"
             android:inputType="text"
@@ -154,7 +160,8 @@
         <Spinner
             android:id="@+id/item_s1_eventos"
             android:layout_width="match_parent"
-            android:layout_height="45dp" />
+            android:layout_height="45dp"
+            android:layout_marginBottom="15px" />
 
         <Button
             android:id="@+id/item_b2_eventos_eliminar"
