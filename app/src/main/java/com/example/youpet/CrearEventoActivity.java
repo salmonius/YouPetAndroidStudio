@@ -156,6 +156,8 @@ public class CrearEventoActivity extends AppCompatActivity {
                 mp.start();
                 atras = new Intent(CrearEventoActivity.this,PrincipalActivity.class);
                 atras.putExtra("ID",extras.getInt("ID"));
+                atras.putExtra("EMAIL",extras.getString("EMAIL"));
+                atras.putExtra("PASS",extras.getString("PASS"));
                 startActivity(atras);
 
             }
