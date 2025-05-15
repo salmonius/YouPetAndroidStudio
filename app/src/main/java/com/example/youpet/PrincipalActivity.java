@@ -1,5 +1,7 @@
 package com.example.youpet;
 
+import static java.lang.System.exit;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -39,9 +41,9 @@ public class PrincipalActivity extends AppCompatActivity {
     protected ListView lv1;
     protected Noticia noticia;
     protected TextView tv3n,tv3e,tv3l,tv3f,tv3i,tv4n,tv4e,tv4l,tv4f,tv4i,tv5n,tv5e,tv5l,tv5f,tv5i,tv6n,tv6e,tv6l,tv6f,tv6i,tv7n,tv7e,tv7l,tv7f,tv7i;
-
-
     protected MediaPlayer mp;
+
+    
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,6 +206,7 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mp = MediaPlayer.create(PrincipalActivity.this, R.raw.bubbles);
                 mp.start();
+
                 Date fechaHoraActual = new Date();
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 String fechaHoraString = formato.format(fechaHoraActual);
@@ -261,6 +264,8 @@ public class PrincipalActivity extends AppCompatActivity {
 
         }
         if(item.getItemId()==R.id.item_cerrar) {
+            pasar = new Intent(PrincipalActivity.this, AutenticacionActivity.class);
+            startActivity(pasar);
             finish();
 
         }
